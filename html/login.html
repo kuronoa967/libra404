@@ -2,22 +2,61 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ログインフォーム</title>
-  <link rel="stylesheet" href="style.css">
+  <title>ログイン</title>
+  <style>
+    body { 
+      font-family: sans-serif; 
+      text-align: center; 
+    }
+    form {
+      display: inline-block;  /* 全体を中央寄せ */
+      text-align: left;       /* 中身は左寄せ */
+    }
+    .form-group {
+      margin: 30px 0;
+    }
+    label {
+      display: inline-block;
+      width: 150px;           /* ラベル幅を揃える */
+    }
+    input {
+      width: 300px;
+      padding: 5px;
+    }
+    .btn {
+      border: 1px solid #000;
+      border-radius: 8px;     /* 角丸 */
+      padding: 5px 15px;
+      margin: 20px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .button-group {
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 <body>
+  <h1>ログイン</h1>
   <form>
     <div class="form-group">
       <label for="email">メールアドレス:</label>
-      <input type="text" id="email" name="email">
+      <input type="text" id="email">
     </div>
     <div class="form-group">
       <label for="password">パスワード:</label>
-      <input type="password" id="password" name="password">
+      <input type="password" id="password">
     </div>
+
+    <!-- キャンセルとログインは横並び -->
     <div class="button-group">
-      <button type="button">キャンセル</button>
-      <button type="submit">ログイン</button>
+      <button type="button" class="btn">キャンセル</button>
+      <button type="submit" class="btn">ログイン</button>
+    </div>
+
+    <div style="text-align:center">
+      <button type="button" class="btn">新規登録</button>
     </div>
   </form>
 </body>
