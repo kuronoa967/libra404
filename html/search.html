@@ -5,24 +5,40 @@
     <title>画面名</title>
 </head>
 <body>
-  <div class="book-container">
-    <div class="book-image">
-      
-    </div>
-    <div class="book-details">
-            <h1>タイトル:</h1>
-            <p>著者:</p>
-            <p>出版社:</p>
-            <p>カテゴリ:</p>
-            <p>あらすじ:</p>
-            <div class="summary">
-      </div>
+    <div class="container">
+        <div class="header">
+            <img src="https://via.placeholder.com/32" alt="ホームアイコン" class="home-icon">
+            <span>ホーム</span>
         </div>
-        <div class="not-available">貸し出し不可</div>
-    </div>
-    <div class="button-container">
-        <button>戻る</button>
-        <button>借りる</button>
+
+        <div class="book-section">
+            <div class="book-image">
+                <img id="book-cover" src="" alt="本の表紙">
+            </div>
+            
+            <div class="book-details">
+                <div class="details-grid">
+                    <h1>タイトル: <span id="book-title"></span></h1>
+                    <span>著者: <span id="book-author"></span></span>
+                    <span>出版社: <span id="book-publisher"></span></span>
+                    <span>カテゴリ: <span id="book-category"></span></span>
+                </div>
+                
+                <div class="summary-container">
+                    <span>あらすじ</span>
+                    <div class="summary-box">
+                        <span id="book-summary"></span>
+                    </div>
+                </div>
+            </div>
+
+            <span id="loan-status" class="not-available"></span>
+        </div>
+
+        <div class="button-section">
+            <button onclick="history.back()">戻る</button>
+            <button>借りる</button>
+        </div>
     </div>
 </body>
 </html>
