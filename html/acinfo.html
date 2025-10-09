@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -6,8 +7,9 @@
 </head>
 <body>
   <h1>アカウント情報</h1>
-  <div>
-    
+  <div class="info-row">
+    <div class="label">氏名：</div>
+    <div class="value" th:text="${name}"></div>
   </div>
   <div>
     <a href="../docs/index.html"><button type="button" class="btn">ホームに戻る</button></a>
