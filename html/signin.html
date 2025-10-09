@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ログイン</title>
+  <title>新規登録</title>
   <style>
     body { 
       font-family: sans-serif; 
@@ -23,13 +23,18 @@
       width: 300px;
       padding: 5px;
     }
+    /* <a>タグをボタンのように見せるためのスタイルを追加・修正 */
     .btn {
       border: 1px solid #000;
       border-radius: 8px;     /* 角丸 */
       padding: 5px 15px;
-      margin: 20px;
+      margin: 20px 10px;      /* 左右の余白を調整 */
       background: #fff;
       cursor: pointer;
+      /* <a>タグのデフォルトのスタイルをリセット */
+      text-decoration: none;
+      color: #000;
+      display: inline-block;
     }
     .button-group {
       text-align: center;
@@ -39,7 +44,7 @@
 </head>
 <body>
   <h1>新規登録</h1>
-  <form>
+  <form> 
     <div class="form-group">
       <label for="name">氏名:</label>
       <input type="text" id="name">
@@ -57,10 +62,10 @@
       <input type="password" id="password">
     </div>
 
-    <!-- キャンセルとログインは横並び -->
     <div class="button-group">
-      <button type="button" class="btn">キャンセル</button>
-      <button type="submit" class="btn">新規登録</button>
+      <a href="login.html" class="btn">キャンセル</a>
+      
+      <a href="home.html" class="btn">新規登録</a>
     </div>
   </form>
 </body>
