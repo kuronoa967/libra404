@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貸出完了画面</title>
+    <style>
+        /* ==================================== */
+        /* 指定されたCSSスタイル */
+        /* ==================================== */
+        body {
+            font-family: sans-serif;
+            text-align: center; /* 全体を中央寄せ */
+            background-color: #f4f4f4;
+            padding-top: 50px;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+        .form-group {
+            margin: 30px 0;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        input {
+            width: 300px;
+            padding: 5px;
+        }
+        /* <a>タグをボタンのように見せるためのスタイル */
+        .btn {
+            border: 1px solid #000;
+            border-radius: 8px; /* 角丸 */
+            padding: 5px 15px;
+            margin: 20px; /* 上下左右に20pxのマージン */
+            background: #fff;
+            cursor: pointer;
+            /* <a>タグのデフォルトのスタイルをリセット */
+            text-decoration: none;
+            color: #000;
+            display: block; /* 縦に並べるためにブロック要素化 */
+            width: 250px;
+            margin-left: auto; /* 中央寄せ */
+            margin-right: auto; /* 中央寄せ */
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 15px;
+        }
+        /* ==================================== */
+        /* 画面固有のスタイル */
+        /* ==================================== */
+        #book-title-display {
+            border: 1px solid #000;
+            padding: 10px 30px;
+            margin: 0 auto 30px; /* 上部にボタンとの間隔を開ける */
+            display: inline-block;
+            font-size: 1.5em;
+            background-color: #fff;
+        }
 
+        #conf-message {
+            font-size: 2em;
+            color: #333; /* 貸出完了の色は今回は黒に */
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="book-title-display">（本のタイトル）</div>
+    <div id="conf-message">貸出完了</div>
+
+    <div class="button-group">
+        <a href="#" class="btn" id="return-search-btn">検索画面に戻る</a>
+        
+        <a href="#" class="btn" id="bookshelf-btn">本棚</a>
+    </div>
+
+<script>
+    // ====================================
+    // JavaScript (DBデータ取得と画面遷移のシミュレーション)
+    // ====================================
+    document.addEventListener('DOMContentLoaded', () => {
+        const bookTitleDisplay = document.getElementById('book-title-display');
+        const returnSearchBtn = document.getElementById('return-search-btn');
+        const bookshelfBtn = document.getElementById('bookshelf-btn');
+
+        // ★ 1. URLから本のタイトルを取得する処理（前の画面からの引き継ぎをシミュレート） ★
+        function getBookTitleFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            // URLが ?title=タイトル名 の形式で渡されることを想定
+            return params.get('title') || 'タイトルが見つかりません';
+        }
+
+        // タイトルを画面に表示
+        bookTitleDisplay.textContent = getBookTitleFromUrl();
+
+        
+        // ★ 2. データベースから取得する書籍情報のダミーデータ ★
+        // DBフィールド名: phpto, title, synopsis, botype
+        const DUMMY_BOOK_DATA = [
+            { phpto: 'img/book1.jpg', title: '新しいファンタジー', synopsis: '壮大な物語。', botype: 'ファンタジー' },
+            { phpto: 'img/book2.jpg', title: '密室のミステリー', synopsis: '犯人は誰だ？', botype: 'ミステリー' },
+            { phpto: 'img/book3.jpg', title: '自己啓発の極意', synopsis: '成功への道。', botype: '自己啓発本' }
+        ];
+
+        /**
+         * データベースから書籍データを取得し、次の画面へ渡す処理をシミュレート
+         * @param {string} targetUrl - 遷移先のURL ('search.html' or 'bookshelf.html')
+         */
+        function handleNavigation(targetUrl) {
+            // 実際にはここでサーバーサイドの処理 (PHP) を呼び出し、DBからデータを取得します。
+
+            // --- フロントエンドでの遷移シミュレーション ---
+            // データをJSON文字列化し、URLクエリパラメータとして渡す (簡易的なデータ渡し)
+            const dataQuery = encodeURIComponent(JSON.stringify(DUMMY_BOOK_DATA));
+            
+            const fullUrl = `${targetUrl}?books=${dataQuery}`;
+            
+            console.log(`${targetUrl} へ遷移。DBデータをシミュレートして渡します。`);
+
+            // 実際の遷移
+            window.location.href = fullUrl;
+        }
+
+        
+        // ★ 3. イベントリスナー ★
+        
+        // 「検索画面に戻る」ボタン
+        returnSearchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleNavigation('search.html');
+        });
+
+        // 「本棚」ボタン
+        bookshelfBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleNavigation('bookshelf.html');
+        });
+    });
+</script>
+
+</body>
+</html>
