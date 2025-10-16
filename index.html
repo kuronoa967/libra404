@@ -4,7 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Libra404 - ホーム</title>
-    <link rel="stylesheet" href="./static/css/home.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 5px;
+        }
+        .header hr {
+            width: 200px;
+            border: 2px solid black;
+        }
+        .main-content {
+            display: flex;
+            gap: 100px;
+        }
+        .main-actions, .side-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .button {
+            padding: 15px 30px;
+            border: 1px solid black;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            min-width: 150px;
+            cursor: pointer;
+            background-color: white;
+            /* Flexboxを使用し、ボタンを中央揃えにするための設定 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.4;
+        }
+        .side-actions .button {
+            min-width: 100px;
+            padding: 10px 20px;
+        }
+        .button-login-info {
+             /* ログイン/アカウント情報ボタンの特殊な高さ設定 */
+             min-height: 60px;
+        }
+
+        /* --- メッセージ表示部分のCSS --- */
+        .message-area {
+            margin-top: 50px;
+            text-align: center;
+            color: red;
+            font-size: 18px;
+            /* 💡 初期状態では非表示にする */
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,14 +79,16 @@
 
     <div class="main-content">
         <nav class="main-actions">
-            <a href="./html/search.html" class="button">本を探す</a>
-            <a href="./html/bookshelf.html" class="button">本棚</a>
+            <a href="search.html" class="button">本を探す</a>
+            <a href="#" class="button">本棚</a>
         </nav>
 
         <aside class="side-actions">
-            <a href="./html/login.html" class="button">ログイン</a>
-            <a href="#" class="button">ログアウト</a>
-            <a href="./html/signin.html" class="button">新規登録</a>
+            <a href="./html/login.html"><button id="loginButton" class="button button-login-info">
+                ログイン<br>
+            </button></a>
+            <a href="#"><button type="button">ログアウト</button></a>
+            <a href="signin.html"><button type="button">新規登録</button></a>
         </aside>
     </div>
 
@@ -51,10 +117,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
