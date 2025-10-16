@@ -1,1 +1,32 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>本棚画面</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://via.placeholder.com/32" alt="ホームアイコン" class="home-icon">
+            <span>ホーム</span>
+        </div>
+
+        <div class="book-section">
+            <div class="book-image">
+                <img id="book-cover" src="" alt="本の表紙">
+            </div>
+            
+            <div class="book-details">
+                <div class="details-grid">
+                    <h1>タイトル: <span id="book-title"></span></h1>
+                    <span>貸出日: <span id="book-day"></span></span>
+                    <span>返却日: <span id="return-day"></span></span>
+                </div>
+            </div>
+
+            <span id="loan-status" class="not-available"></span>
+        </div>
+    </div>
+</body>
+</html>
