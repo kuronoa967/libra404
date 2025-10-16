@@ -1,18 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"></html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <title>アカウント情報</title>
-</head>
+  </head>
 <body>
   <h1>アカウント情報</h1>
-  <div class="info-row">
-    <div class="label">氏名：</div>
-    <div class="value" th:text="${name}"></div>
-  </div>
-  <div>
-    <a href="../docs/index.html"><button type="button" class="btn">ホームに戻る</button></a>
-    <a href="acinfochange.html"><button type="button" class="btn">変更</button></a>
-  </div>
+  <form> 
+    <div class="form-group">
+      <label for="name">氏名:</label>
+      <input type="text" id="name">
+    </div>
+    <div class="form-group">
+      <label for="address">住所:</label>
+      <input type="text" id="address">
+    </div>
+    <div class="form-group">
+      <label for="email">メールアドレス:</label>
+      <input type="text" id="email">
+    </div>
+    <div class="form-group">
+      <label for="password">パスワード:</label>
+      <input type="password" id="password">
+    </div>
+
+    <div class="button-group">
+      <a href="login.html" class="btn">キャンセル</a>
+      
+      <a href="home.html" class="btn">アカウント情報</a>
+    </div>
+  </form>
 </body>
+</html>
