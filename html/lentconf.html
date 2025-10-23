@@ -1,1 +1,72 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貸出確認画面</title>
+
+</head>
+<body>
+
+    <form>
+        <div class="confirmation-text">
+            <div id="book-title-display">（本のタイトル）</div>
+            <span> を借りますか？</span>
+        </div>
+
+        <div class="button-group">
+            <a href="#" class="btn" id="btn-no">いいえ</a>
+            <a href="#" class="btn" id="btn-yes">はい</a>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bookTitleDisplay = document.getElementById('book-title-display');
+            const btnNo = document.getElementById('btn-no');
+            const btnYes = document.getElementById('btn-yes');
+
+            let bookTitle = 'タイトル未取得';
+            let bookId = 999;
+
+            // URLパラメータから書籍タイトルとID取得
+            function initializeScreen() {
+                const params = new URLSearchParams(window.location.search);
+                bookTitle = params.get('title') || 'タイトルが見つかりません';
+                bookId = params.get('id') || '999';
+                bookTitleDisplay.textContent = bookTitle;
+            }
+            initializeScreen();
+
+            // 「いいえ」→ bdetail.html に戻る
+            btnNo.addEventListener('click', (e) => {
+                e.preventDefault();
+                const prevUrl = `bdetail.html?id=${bookId}&title=${encodeURIComponent(bookTitle)}`;
+                window.location.href = prevUrl;
+            });
+
+            // 「はい」→ DB登録して貸出完了画面へ
+            btnYes.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const mockMid = 123; // ログイン中ユーザーID想定
+                const today = new Date().toISOString().split('T')[0];
+
+                console.log('貸出登録');
+                console.log(`boid: ${bookId}, mid: ${mockMid}, boday: ${today}`);
+
+                // 本番ではサーバーにPOSTする処理に置き換え
+                // fetch('/api/lend', {
+                //   method: 'POST',
+                //   headers: { 'Content-Type': 'application/json' },
+                //   body: JSON.stringify({ boid: bookId, mid: mockMid, boday: today })
+                // })
+
+                const completionUrl = `lentcomp.html?title=${encodeURIComponent(bookTitle)}`;
+                window.location.href = completionUrl;
+            });
+        });
+    </script>
+</body>
+</html>
