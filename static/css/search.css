@@ -1,1 +1,115 @@
-
+  <style>
+      body {
+            font-family: sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .home-link {
+            border: 1px solid #000;
+            border-radius: 8px;
+            padding: 5px 15px;
+            background: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            color: #000;
+            display: inline-flex;
+            align-items: center;
+            font-size: 1em;
+        }
+        .home-link .material-icons {
+            margin-right: 5px;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
+        .search-group {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+            margin-left: 10px;
+            background-color: #f9f9f9;
+        }
+        .search-group input[type="text"],
+        .search-group select {
+            border: none;
+            outline: none;
+            padding: 5px;
+            font-size: 1em;
+            background: none;
+            width: 150px;
+        }
+        .search-group .material-icons {
+            cursor: pointer;
+            color: #666;
+            margin-left: 5px;
+            padding: 2px;
+        }
+        .search-group .material-icons:hover {
+            color: #0056b3;
+        }
+        .main-content {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .hit-count {
+            text-align: center;
+            font-size: 1.5em;
+            margin: 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ccc;
+        }
+        .results-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+        .book-item {
+            display: flex;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .book-image {
+            width: 100px;
+            height: 140px;
+            border: 1px solid #ccc;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        .book-info h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .book-info p {
+            margin: 5px 0;
+        }
+        .availability {
+            font-weight: bold;
+            color: #007b00;
+        }
+        .unavailable {
+            color: #c00;
+        }
+    </style>
