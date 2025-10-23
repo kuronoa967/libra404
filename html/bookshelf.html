@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>本棚 - Libra App</title>
+    <title>Libra404 - 本棚</title>
     <link rel="stylesheet" href="./static/css/bookshelf.css">
 </head>
 <body>
@@ -26,43 +26,13 @@
                     <option value="borrowing">貸出中</option>
                     <option value="returned">返却済み</option>
                 </select>
-                <button class="filter-button">
-                    <span class="filter-icon"></span>
+                <button onclick="location.href='#'" class="filter-button">
+                    <img src='https://kuronoa967.github.io/libra404/static/images/filter.png'>
                 </button>
             </div>
         </header>
 
         <main class="bookshelf-main">
-            <p class="count-display">5件表示</p>
-
-            <div class="book-list">
-
-                <div class="book-item">
-                    <div class="book-cover">
-                        本の画像
-                    </div>
-                    <div class="book-details">
-                        <p><strong>タイトル:</strong></p>
-                        <p><strong>貸出日:</strong></p>
-                        <p><strong>返却日:</strong></p>
-                    </div>
-                </div>
-                <hr class="item-separator">
-
-                <div class="book-item">
-                    <div class="book-cover">
-                        本の画像
-                    </div>
-                    <div class="book-details">
-                        <p><strong>タイトル:</strong></p>
-                        <p><strong>貸出日:</strong></p>
-                        <p><strong>返却日:</strong></p>
-                    </div>
-                </div>
-            </div>
-            <div class="scrollbar-placeholder">
-                <div class="scrollbar-thumb"></div>
-            </div>
         </main>
     </div>
 </body>
