@@ -1,60 +1,81 @@
-body {
-    margin: 0;
-    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, system-ui, -apple-system, sans-serif;
-    background: #fff;
-    color: var(--ink);
-    display: grid;
-    place-items: start center;
-    padding: 16px;
-}
+    <style>
+        /* ==================================== */
+        /* 共通スタイル */
+        /* ==================================== */
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
 
-.confirmation-frame {
-    width: 600px;
-    border: 1px solid var(--border);
-    padding: 32px;
-    background: var(--panel);
-    display: grid;
-    row-gap: 32px;
-    justify-items: center;
-}
+        form {
+            display: inline-block;
+            text-align: left;
+            background-color: #fff;
+            padding: 30px 50px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 80px;
+        }
 
-#book-title-display {
-    padding: 16px 32px;
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    background: var(--panel);
-    font-size: 24px;
-    font-weight: 700;
-    box-shadow: 0 3px 0 #b3b3b3;
-}
+        .form-group {
+            margin: 30px 0;
+        }
 
-.button-group {
-    display: grid;
-    grid-template-columns: repeat(2, 220px);
-    column-gap: 32px;
-}
+        label {
+            display: inline-block;
+            width: 150px;
+        }
 
-.btn {
-    display: grid;
-    place-items: center;
-    background: var(--panel);
-    border: 2px solid #8e8e8e;
-    border-radius: 14px;
-    box-shadow: 0 3px 0 #b3b3b3;
-    color: var(--ink);
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-}
+        /* 本タイトル部分 */
+        #book-title-display {
+            border: 1px solid #000;
+            padding: 8px 15px;
+            display: inline-block;
+            background-color: #fff;
+            font-weight: bold;
+            border-radius: 5px;
+        }
 
-#btn-yes {
-    background-color: #28a745;
-    border-color: #28a745;
-    color: #fff;
-}
+        /* メッセージ文 */
+        .confirmation-text {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
 
-#btn-yes:hover {
-    background-color: #1e7e34;
-}
+        /* ボタン共通 */
+        .btn {
+            border: 1px solid #000;
+            border-radius: 8px;
+            padding: 5px 15px;
+            margin: 20px;
+            background: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            color: #000;
+            font-size: 1em;
+            display: inline-block;
+            width: 120px;
+            text-align: center;
+        }
 
+        .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* 「はい（借りる）」ボタンを目立たせる */
+        #btn-yes {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        #btn-yes:hover {
+            background-color: #1e7e34;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
