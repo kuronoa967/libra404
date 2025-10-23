@@ -7,29 +7,27 @@
   </head>
 <body>
   <h1>アカウント情報</h1>
-  <form> 
     <div class="form-group">
       <label for="name">氏名:</label>
-      <input type="text" id="name">
+      <span th:text="${user.name}">
     </div>
     <div class="form-group">
       <label for="address">住所:</label>
-      <input type="text" id="address">
+      <span th:text="${user.address}">
     </div>
     <div class="form-group">
       <label for="email">メールアドレス:</label>
-      <input type="text" id="email">
+      <span th:text="${user.email}">
     </div>
     <div class="form-group">
       <label for="password">パスワード:</label>
-      <input type="password" id="password">
+      <span th:text="${user.password}">
     </div>
 
     <div class="button-group">
-      <a href="home.html" class="btn">キャンセル</a>
+      <a href="home.html"><button class="button" type="button">キャンセル</button></a>
       
-      <a href="acinfochange.html" class="btn">編集</a>
+      <a href="acinfochange.html"><button class="button" type="button">編集</a>
     </div>
-  </form>
 </body>
 </html>
