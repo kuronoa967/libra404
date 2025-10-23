@@ -1,64 +1,60 @@
-    <style>
-        /* ==================================== */
-        /* 共通スタイル */
-        /* ==================================== */
-        body {
-            font-family: sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
+body {
+        font-family: sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+    }
+
+form {
+        display: inline-block;
+        text-align: left;
+        background-color: #fff;
+        padding: 30px 50px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        margin-top: 80px;
         }
 
-        form {
-            display: inline-block;
-            text-align: left;
-            background-color: #fff;
-            padding: 30px 50px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-top: 80px;
-        }
-
-        .form-group {
+.form-group {
             margin: 30px 0;
+            }
+
+label {
+        display: inline-block;
+        width: 150px;
         }
 
-        label {
-            display: inline-block;
-            width: 150px;
-        }
+/* 本タイトル部分 */
+#book-title-display {
+        border: 1px solid #000;
+        padding: 8px 15px;
+        display: inline-block;
+        background-color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
+}
 
-        /* 本タイトル部分 */
-        #book-title-display {
-            border: 1px solid #000;
-            padding: 8px 15px;
-            display: inline-block;
-            background-color: #fff;
-            font-weight: bold;
-            border-radius: 5px;
-        }
+/* メッセージ文 */
+.confirmation-text {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    }
 
-        /* メッセージ文 */
-        .confirmation-text {
-            text-align: center;
-            font-size: 1.2em;
-            margin-bottom: 40px;
-        }
-
-        /* ボタン共通 */
-        .btn {
-            border: 1px solid #000;
-            border-radius: 8px;
-            padding: 5px 15px;
-            margin: 20px;
-            background: #fff;
-            cursor: pointer;
-            text-decoration: none;
-            color: #000;
-            font-size: 1em;
-            display: inline-block;
-            width: 120px;
-            text-align: center;
-        }
+/* ボタン共通 */
+.btn {
+        border: 1px solid #000;
+        border-radius: 8px;
+        padding: 5px 15px;
+        margin: 20px;
+        background: #fff;
+        cursor: pointer;
+        text-decoration: none;
+        color: #000;
+        font-size: 1em;
+        display: inline-block;
+        width: 120px;
+        text-align: center;
+    }
 
         .btn:hover {
             background-color: #e0e0e0;
@@ -78,4 +74,3 @@
             text-align: center;
             margin-top: 30px;
         }
-    </style>
