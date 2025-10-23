@@ -33,6 +33,17 @@
         </header>
 
         <main class="bookshelf-main">
+            <div th:if="${bookList != null and !#lists.isEmpty(bookList)}" class="bookshelf">
+                <div th:each="b : ${bookList}" class="book-card">
+                    <h3 th:text="*{b.title}">タイトル</h3>
+                    <p><strong>著者:</strong> <span th:text="*{b.author}">著者名</span></p>
+                    <p><strong>貸出日:</strong> <span th:text="*{b.borrowDate}">YYYY-MM-DD</span></p>
+                </div>
+            </div>
+            
+            <div th:if="${bookList == null or #lists.isEmpty(bookList)}" class="no-books">
+                借りた本はありません。
+            </div>
         </main>
     </div>
 </body>
