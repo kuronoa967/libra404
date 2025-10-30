@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Libra404 - 本棚</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="../static/css/bookshelf.css">
 </head>
 <body>
@@ -12,12 +13,18 @@
 
         <header class="bookshelf-header">
             <div class="home-link-container">
-                <a href="home.html">
-                        <img src="../static/images/icon.png" alt="ホーム" class="button-icon">
+                <a href="home.html" class="home-link">
+                    <span class="material-symbols-outlined book-icon">
+                        book
+                    </span>
+                    ホーム
                 </a>
             </div>
 
-            <h1 class="page-title">本棚</h1>
+            <div class="title-area">
+                <h1 class="page-title">本棚</h1>
+                <p class="count-display">5件表示</p>
+            </div>
 
             <div class="header-controls">
                 <select class="filter-dropdown">
@@ -25,23 +32,37 @@
                     <option value="borrowing">貸出中</option>
                     <option value="returned">返却済み</option>
                 </select>
-                <button onclick="location.href='#';">
-                    <img src="https://kuronoa967.github.io/libra404/static/images/filter.png" alt="フィルター" class="button-icon">
+                <button onclick="location.href='#';" class="filter-button">
+                    <span class="material-symbols-outlined filter-icon">
+                        filter_alt
+                    </span>
                 </button>
             </div>
         </header>
 
         <main class="bookshelf-main">
-            <div th:if="${bookList != null and !#lists.isEmpty(bookList)}" class="bookshelf">
-                <div th:each="b : ${bookList}" class="book-card">
-                    <h3 th:text="*{b.title}">タイトル</h3>
-                    <p><strong>著者:</strong> <span th:text="*{b.author}">著者名</span></p>
-                    <p><strong>貸出日:</strong> <span th:text="*{b.borrowDate}">YYYY-MM-DD</span></p>
+            <div class="book-list-wrapper">
+                <div th:if="${bookList != null and !#lists.isEmpty(bookList)}" class="book-list">
+                    <div th:each="b : ${bookList}" class="book-item">
+                        <div class="book-cover">
+                            <img th:src="*{b.phpto}" alt="本の画像" class="book-cover-img" />
+                            <span class="placeholder-text">本の画像</span>
+                        </div>
+                        <div class="book-details">
+                            <p><strong>タイトル:</strong> <span th:text="*{b.title}">タイトル</span></p>
+                            <p><strong>貸出日:</strong> <span th:text="*{b.borrowDate}">YYYY-MM-DD</span></p>
+                            <p><strong>返却日:</strong> <span th:text="*{b.returnDate}">YYYY-MM-DD</span></p>
+                        </div>
+                        <hr class="item-separator"> </div>
+                    
+                    <div th:if="${bookList == null or #lists.isEmpty(bookList)}" class="no-books">
+                        借りた本はありません。
+                    </div>
                 </div>
             </div>
             
-            <div th:if="${bookList == null or #lists.isEmpty(bookList)}" class="no-books">
-                借りた本はありません。
+            <div class="scrollbar-placeholder">
+                <div class="scrollbar-thumb"></div>
             </div>
         </main>
     </div>
