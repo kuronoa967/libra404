@@ -100,12 +100,19 @@ body {
     font-size: 18px; /* 虫眼鏡のサイズ調整 */
 }
 
-/* category-group は今回はヘッダー中央配置から除外 */
-/* .category-group { margin-right: 15px; } */
-
-/* メインコンテンツ */
+/* --- メインコンテンツ --- */
 .main-content {
+    /* Flexboxを適用し、子要素を右寄せ可能にする */
+    display: flex; 
+    flex-direction: column;
     padding: 20px 20px 0 20px;
+}
+
+/* 🍎 カテゴリー検索の右寄せ 🍎 */
+.category-group { 
+    /* 🍏 カテゴリー検索フォームを自身の親要素 (.main-content) の**右端に配置** */
+    align-self: flex-end; 
+    margin-bottom: 15px; /* 下のヒット件数との間にスペース */
 }
 
 /* ヒット件数 (0件ヒット) */
