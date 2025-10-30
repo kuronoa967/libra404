@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>ログイン</title>
-  <link rel="stylesheet" href="../static/css/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン</title>
+    <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
-  <h1>ログイン</h1>
-  <form>
-    <div class="form-group">
-      <label for="email">メールアドレス:</label>
-      <input type="text" id="email">
-    </div>
-    <div class="form-group">
-      <label for="password">パスワード:</label>
-      <input type="password" id="password">
+    
+    <div class="login-container"> 
+        <h1>ログイン</h1>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">メールアドレス:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">パスワード:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="button-group top-buttons">
+                <button type="button" class="btn cancel-btn" onclick="window.location.href='home.html';">キャンセル</button>
+                <button type="submit" class="btn login-btn">ログイン</button>
+            </div>
+        </form>
+
+        <div class="button-group signin-group">
+            <a href="signin.html" class="btn signin-btn">新規登録</a>
+        </div>
+        
+        <p id="error-message" class="error-message">IDまたはパスワードが間違っています。</p>
     </div>
 
-    <div class="button-group">
-      <button type="button" class="btn">キャンセル</button>
-      <button type="submit" class="btn">ログイン</button>
-    </div>
-
-    <div style="text-align:center">
-      <a href="signin.html"><button type="button" class="btn">新規登録</button></a>
-    </div>
-  </form>
+    <script>
+        // エラーメッセージ表示をシミュレート
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // 実際にはここでサーバーサイドの認証処理を行います。
+            
+            // 認証失敗をシミュレート
+            document.getElementById('error-message').style.display = 'block'; 
+            
+            // 認証成功をシミュレートする場合 (例: home.htmlへ遷移)
+            // if (success) {
+            //     window.location.href = 'home.html';
+            // }
+        });
+    </script>
 </body>
 </html>
-
