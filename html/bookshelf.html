@@ -53,18 +53,14 @@
                             <p><strong>貸出日:</strong> <span th:text="*{b.borrowDate}">YYYY-MM-DD</span></p>
                             <p><strong>返却日:</strong> <span th:text="*{b.returnDate}">YYYY-MM-DD</span></p>
                         </div>
-                        <hr class="item-separator"> </div>
-                    
-                    <div th:if="${bookList == null or #lists.isEmpty(bookList)}" class="no-books">
-                        借りた本はありません。
                     </div>
                 </div>
+                
+                <div th:if="${bookList == null or #lists.isEmpty(bookList)}" class="no-books">
+                    借りた本はありません。
+                </div>
             </div>
-            
-            <div class="scrollbar-placeholder">
-                <div class="scrollbar-thumb"></div>
-            </div>
-        </main>
+            </main>
     </div>
 </body>
 </html>
