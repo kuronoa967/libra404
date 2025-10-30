@@ -81,14 +81,16 @@
                 const item = document.createElement("div");
                 item.className = "book-item";
                 item.innerHTML = `
-                    <img src="${book.image}" alt="${book.title}" class="book-image">
-                    <div class="book-info">
-                        <h3>${book.title}</h3>
-                        <p>${book.description}</p>
-                        <p class="${book.available ? "availability" : "unavailable"}">
-                            ${book.available ? "貸出可" : "貸出不可"}
-                        </p>
-                    </div>
+                    <a href="${detailUrl}" class="book-detail-link">
+                        <img src="${book.image}" alt="${book.title}" class="book-image">
+                        <div class="book-info">
+                            <h3>${book.title}</h3>
+                            <p>${book.description}</p>
+                            <p class="${book.available ? "availability" : "unavailable"}">
+                                ${book.available ? "貸出可" : "貸出不可"}
+                            </p>
+                        </div>
+                    </a>
                 `;
                 resultsList.appendChild(item);
             });
