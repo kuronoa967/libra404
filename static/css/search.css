@@ -20,15 +20,11 @@ body {
 }
 
 /* ホームリンクとアプリアイコン (左端に固定) */
-.home-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #444; 
-    font-size: 1.1em;
-    margin-right: 30px;
-    white-space: nowrap;
-    padding-top: 3px; 
+.home-link-container {
+    /* 「ホーム」とアイコンを左上に配置 */
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 .app-icon {
