@@ -9,9 +9,8 @@
 
 :root {
     --text-color: #333;
-    --border-color: #000; /* 枠線を黒に変更 */
+    --border-color: #000;
     --icon-size: 40px;
-    --list-width: 650px; /* リスト表示領域の最大幅 */
 }
 
 body {
@@ -36,24 +35,23 @@ body {
    ================== */
 .bookshelf-header {
     display: flex;
-    align-items: flex-start; /* アイコンの上端に揃える */
+    align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 0;
     position: relative;
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color); /* 下線を追加 */
+    border-bottom: 1px solid var(--border-color); /* 下線 */
 }
 
 /* 🏠 左上のホームリンク */
 .home-link-container {
     position: absolute;
-    top: -5px; /* 上端からの位置調整 */
+    top: -5px; 
     left: 0; 
 }
 
 .home-link {
     display: flex;
-    flex-direction: column; /* 縦並び */
+    flex-direction: column;
     align-items: center;
     text-decoration: none;
     color: var(--text-color);
@@ -70,7 +68,7 @@ body {
 .title-area {
     text-align: center;
     flex-grow: 1;
-    margin-left: 50px; /* ホームリンクとの隙間 */
+    margin-left: 50px;
 }
 
 .page-title {
@@ -90,35 +88,38 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top: 10px; /* タイトルと高さを合わせるための調整 */
+    margin-top: 10px;
 }
 
 .filter-dropdown {
     padding: 5px 20px 5px 10px;
     border: 1px solid var(--border-color);
-    border-radius: 0; /* 角丸なし */
+    border-radius: 0;
     font-size: 16px;
-    /* 矢印はCSSで調整 */
     background: white;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-.filter-dropdown:after {
+/* ドロップダウンの矢印を再現 */
+.filter-dropdown::after {
     content: '▼';
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    pointer-events: none;
 }
 
 .filter-button {
-    /* フィルターアイコンボタンの枠線 */
     border: 1px solid var(--border-color);
     background: white;
     padding: 2px;
-    line-height: 1; /* アイコンを枠内に収める */
+    line-height: 1;
     cursor: pointer;
 }
 
 .filter-icon {
-    font-size: 25px; /* アイコンサイズを調整 */
+    font-size: 25px;
     color: #000;
 }
 
@@ -127,16 +128,17 @@ body {
    ================== */
 .bookshelf-main {
     display: flex;
-    justify-content: center; /* リスト全体を中央に配置 */
+    justify-content: center;
     position: relative;
     padding-top: 10px;
 }
 
 .book-list-wrapper {
-    width: var(--list-width);
+    /* スクロールバーのスペースが不要になったため、幅を自動調整または広げる */
+    width: 100%; 
+    max-width: 800px;
     margin: 0 auto;
-    /* スクロールバーの幅を確保するため、リスト本体は幅を狭く設定 */
-    padding-right: 20px;
+    padding-right: 0; /* スクロールバー領域の確保を削除 */
 }
 
 .book-item {
@@ -191,25 +193,8 @@ body {
     font-size: 16px;
 }
 
-/* ==================
-   3. スクロールバーの再現 (ダミー)
-   ================== */
-/* スクロールバーのダミー要素を右端に絶対配置 */
-.scrollbar-placeholder {
-    width: 12px;
-    height: 380px; /* リストの高さに合わせて調整 */
-    position: absolute;
-    right: 0;
-    top: 10px;
-    background-color: #f1f1f1;
-    border-radius: 0; 
-}
-
+/* スクロールバーのダミー要素を削除 */
+.scrollbar-placeholder,
 .scrollbar-thumb {
-    width: 100%;
-    height: 100px; 
-    background-color: #b3b3b3;
-    border-radius: 0;
-    position: absolute;
-    top: 50px; 
+    display: none;
 }
