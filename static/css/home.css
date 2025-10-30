@@ -5,27 +5,34 @@ body {
     align-items: center;
     padding-top: 50px;
 }
+
 .header {
     text-align: center;
     margin-bottom: 50px;
 }
+
 .header h1 {
     font-size: 48px;
     margin-bottom: 5px;
 }
+
 .header hr {
     width: 200px;
     border: 2px solid black;
 }
+
 .main-content {
     display: flex;
     gap: 100px;
 }
+
 .main-actions, .side-actions {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+
+/* a.button をボタン風にする */
 .button {
     padding: 15px 30px;
     border: 1px solid black;
@@ -33,31 +40,41 @@ body {
     text-align: center;
     text-decoration: none;
     color: inherit;
-    display: block;
-    min-width: 150px;
-    cursor: pointer;
     background-color: white;
-    /* Flexboxを使用し、ボタンを中央揃えにするための設定 */
+    cursor: pointer;
+    min-width: 150px;
+
+    /* 中央揃え設定 */
     display: flex;
     justify-content: center;
     align-items: center;
     line-height: 1.4;
+
+    /* transitionを追加してホバー演出を自然に */
+    transition: background-color 0.2s, color 0.2s;
 }
+
+/* hover時にボタンらしい動きを追加 */
+.button:hover {
+    background-color: black;
+    color: white;
+}
+
+/* 右側ボタンのサイズ調整 */
 .side-actions .button {
     min-width: 100px;
     padding: 10px 20px;
 }
+
 .button-login-info {
-        /* ログイン/アカウント情報ボタンの特殊な高さ設定 */
-        min-height: 60px;
+    min-height: 60px;
 }
 
-/* --- メッセージ表示部分のCSS --- */
+/* メッセージ表示部分 */
 .message-area {
     margin-top: 50px;
     text-align: center;
     color: red;
     font-size: 18px;
-    /* 💡 初期状態では非表示にする */
     display: none;
 }
