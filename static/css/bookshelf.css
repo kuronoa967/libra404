@@ -1,20 +1,34 @@
+/* Google Material Symbolsの設定 */
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
 :root {
     --text-color: #333;
-    --border-color: #ccc;
+    --border-color: #000; /* 枠線を黒に変更 */
     --icon-size: 40px;
+    --list-width: 650px; /* リスト表示領域の最大幅 */
 }
 
 body {
-    font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    font-family: sans-serif;
     margin: 0;
     padding: 20px;
     background-color: #fff;
     color: var(--text-color);
+    display: flex;
+    justify-content: center;
 }
 
 .container {
-    max-width: 800px; /* 画面全体の幅を制限して中央に寄せる場合 */
-    margin: 0 auto;
+    width: 100%;
+    max-width: 900px; /* 画面全体の幅を制限 */
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 /* ==================
@@ -22,58 +36,90 @@ body {
    ================== */
 .bookshelf-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* アイコンの上端に揃える */
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    position: relative;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color); /* 下線を追加 */
 }
 
+/* 🏠 左上のホームリンク */
 .home-link-container {
-    /* 「ホーム」とアイコンを左上に配置 */
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: -5px; /* 上端からの位置調整 */
+    left: 0; 
 }
 
 .home-link {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* 縦並び */
     align-items: center;
     text-decoration: none;
     color: var(--text-color);
     font-size: 14px;
 }
 
-.button-icon {
-    width: var(--icon-size);
-    height: var(--icon-size);
+.book-icon {
+    font-size: var(--icon-size);
+    color: #3f51b5; 
+    margin: 0;
+}
+
+/* 中央のタイトルと件数 */
+.title-area {
+    text-align: center;
+    flex-grow: 1;
+    margin-left: 50px; /* ホームリンクとの隙間 */
 }
 
 .page-title {
     font-size: 28px;
     font-weight: bold;
-    margin: 0;
-    /* タイトルを中央に配置するための調整 */
-    flex-grow: 1;
-    text-align: center;
+    margin: 0 0 5px 0;
 }
 
+.count-display {
+    font-size: 14px;
+    margin: 0;
+    color: #555;
+}
+
+/* 右側のコントロール */
 .header-controls {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: auto; /* 右寄せ */
+    margin-top: 10px; /* タイトルと高さを合わせるための調整 */
 }
 
 .filter-dropdown {
     padding: 5px 20px 5px 10px;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 0; /* 角丸なし */
     font-size: 16px;
-    background: white url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") no-repeat right 5px center;
-    background-size: 14px;
-    -webkit-appearance: none; /* デフォルトの矢印を非表示 */
-    -moz-appearance: none;
+    /* 矢印はCSSで調整 */
+    background: white;
     appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.filter-dropdown:after {
+    content: '▼';
+}
+
+.filter-button {
+    /* フィルターアイコンボタンの枠線 */
+    border: 1px solid var(--border-color);
+    background: white;
+    padding: 2px;
+    line-height: 1; /* アイコンを枠内に収める */
+    cursor: pointer;
+}
+
+.filter-icon {
+    font-size: 25px; /* アイコンサイズを調整 */
+    color: #000;
 }
 
 /* ==================
@@ -81,29 +127,34 @@ body {
    ================== */
 .bookshelf-main {
     display: flex;
+    justify-content: center; /* リスト全体を中央に配置 */
     position: relative;
+    padding-top: 10px;
 }
 
-.count-display {
-    font-size: 14px;
-    margin: 0 0 10px 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.book-list {
-    flex-grow: 1;
-    margin-top: 30px; /* カウント表示の下に配置 */
-    /* スクロールバー領域を確保 */
-    padding-right: 25px; 
+.book-list-wrapper {
+    width: var(--list-width);
+    margin: 0 auto;
+    /* スクロールバーの幅を確保するため、リスト本体は幅を狭く設定 */
+    padding-right: 20px;
 }
 
 .book-item {
     display: flex;
-    align-items: top;
+    align-items: flex-start;
     gap: 20px;
     padding: 15px 0;
+    position: relative;
+}
+
+/* 各アイテムの区切り線 */
+.book-item:not(:last-child):after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid var(--border-color);
 }
 
 .book-cover {
@@ -113,9 +164,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    color: var(--border-color);
     flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.book-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-text {
+    position: absolute;
+    color: #000;
+    font-size: 14px;
+}
+
+.book-details {
+    text-align: left;
+    flex-grow: 1;
 }
 
 .book-details p {
@@ -123,30 +191,25 @@ body {
     font-size: 16px;
 }
 
-.item-separator {
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: 0;
-}
-
 /* ==================
    3. スクロールバーの再現 (ダミー)
    ================== */
-/* 実際のスクロールバーのデザインはCSSで細かく制御できないため、視覚的な要素として再現します */
+/* スクロールバーのダミー要素を右端に絶対配置 */
 .scrollbar-placeholder {
     width: 12px;
-    height: 400px; /* リストの高さに合わせて調整 */
-    margin-top: 30px;
-    position: relative;
+    height: 380px; /* リストの高さに合わせて調整 */
+    position: absolute;
+    right: 0;
+    top: 10px;
     background-color: #f1f1f1;
-    border-radius: 6px;
+    border-radius: 0; 
 }
 
 .scrollbar-thumb {
     width: 100%;
-    height: 100px; /* サムの高さ (リストのコンテンツ量に応じて変動する部分) */
+    height: 100px; 
     background-color: #b3b3b3;
-    border-radius: 6px;
+    border-radius: 0;
     position: absolute;
-    top: 50px; /* スクロール位置を再現するための調整 */
+    top: 50px; 
 }
