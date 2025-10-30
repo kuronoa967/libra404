@@ -1,76 +1,75 @@
+/* 全体のレイアウト: 画面中央寄せを実現 */
 body {
-        font-family: sans-serif;
-        text-align: center;
-        background-color: #f4f4f4;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* 背景色を白に変更 */
+    
+    /* 画面全体を中央寄せするためのFlexbox設定 */
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* 垂直方向の中央寄せ */
+    align-items: center; /* 水平方向の中央寄せ */
+    min-height: 100vh; /* 画面全体を高さとする */
 }
 
-form {
-        display: inline-block;
-        text-align: left;
-        background-color: #fff;
-        padding: 30px 50px;
-        border-radius: 12px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        margin-top: 80px;
-        }
+/* メインコンテンツを囲むコンテナ (Flexboxの中央寄せ対象) */
+.main-container {
+    text-align: center; /* 中央の要素を中央に配置 */
+    /* 元のform要素にあったような影や背景は不要なので削除 */
+}
 
-.form-group {
-            margin: 30px 0;
-            }
-
-label {
-        display: inline-block;
-        width: 150px;
-        }
+/* 確認メッセージ全体 */
+.confirmation-text {
+    /* タイトルと「を借りますか？」を横並びにする */
+    display: flex;
+    align-items: center; /* 垂直方向中央揃え */
+    justify-content: center; /* 水平方向中央揃え */
+    font-size: 2em; /* 文字を大きく */
+    font-weight: bold;
+    margin-bottom: 50px; /* ボタンとの間隔 */
+}
 
 /* 本タイトル部分 */
 #book-title-display {
-        border: 1px solid #000;
-        padding: 8px 15px;
-        display: inline-block;
-        background-color: #fff;
-        font-weight: bold;
-        border-radius: 5px;
+    border: 1px solid #000;
+    padding: 8px 15px;
+    background-color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    
+    /* 画面とのバランスを見て、テキストとの隙間を調整 */
+    margin-right: 10px;
 }
 
-/* メッセージ文 */
-.confirmation-text {
-    text-align: center;
-    font-size: 1.2em;
-    margin-bottom: 40px;
-    }
+/* ボタンのグループ */
+.button-group {
+    /* ボタンを横に並べるためのFlexboxは不要。inline-blockで十分 */
+    text-align: center; 
+    margin-top: 30px;
+}
 
 /* ボタン共通 */
 .btn {
-        border: 1px solid #000;
-        border-radius: 8px;
-        padding: 5px 15px;
-        margin: 20px;
-        background: #fff;
-        cursor: pointer;
-        text-decoration: none;
-        color: #000;
-        font-size: 1em;
-        display: inline-block;
-        width: 120px;
-        text-align: center;
-    }
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 10px 20px; /* ボタンの高さを画像に合わせる */
+    margin: 0 20px; /* ボタン間のスペース */
+    background: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    font-size: 1.2em; /* 文字を大きく */
+    font-weight: normal;
+    
+    display: inline-block;
+    width: 150px; /* ボタンの幅を調整 */
+    text-align: center;
+}
 
-        .btn:hover {
-            background-color: #e0e0e0;
-        }
+.btn:hover {
+    background-color: #e0e0e0;
+}
 
-        /* 「はい（借りる）」ボタンを目立たせる */
-        #btn-yes {
-            background-color: #28a745;
-            color: white;
-            border-color: #28a745;
-        }
-        #btn-yes:hover {
-            background-color: #1e7e34;
-        }
-
-        .button-group {
-            text-align: center;
-            margin-top: 30px;
-        }
+/* 「はい」ボタンはデフォルトのまま（画像に合わせたシンプルなスタイル） */
+/* 元のコードにあった #btn-yes の色付きスタイルは画像に合わせて削除しました */
