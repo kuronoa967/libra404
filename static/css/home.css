@@ -66,10 +66,6 @@ body {
     padding: 10px 20px;
 }
 
-.button-login-info {
-    min-height: 60px;
-}
-
 /* メッセージ表示部分 */
 .message-area {
     margin-top: 50px;
