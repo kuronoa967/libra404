@@ -3,49 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>検索画面（初期状態）</title>
-    
-    <link rel="stylesheet" href="../static/css/search.css">
-    
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>検索画面</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
-    <div class="header">
-        <a href="home.html" class="home-link">
-            <span class="app-icon">🍎</span> ホーム
-        </a>
 
-        <div class="search-container">
-            <div class="search-group">
-                <input type="text" id="titleInput" placeholder="タイトル検索">
-                <span class="material-icons search-icon">search</span>
-            </div>
+<header class="header">
+    <a href="home.html" class="home-link">
+        <span class="app-icon">🍎</span>
+        ホーム
+    </a>
 
-            <div class="search-group category-group">
-                <select id="categorySelect">
-                    <option value="">カテゴリー検索</option>
-                    <option value="ファンタジー">ファンタジー</option>
-                    <option value="ミステリー">ミステリー</option>
-                    <option value="ノンフィクション">ノンフィクション</option>
-                    <option value="ホラー">ホラー</option>
-                    <option value="専門書">専門書</option>
-                    <option value="SF">SF</option>
-                    <option value="恋愛">恋愛</option>
-                    <option value="児童書">児童書</option>
-                    <option value="えほん">えほん</option>
-                    <option value="自己啓発本">自己啓発本</option>
-                </select>
-                <span class="material-icons search-icon">search</span>
-            </div>
+    <div class="search-container">
+        <div class="search-group title-search-group">
+            <input type="text" placeholder="タイトルを検索...">
+            <i class="fas fa-search search-icon"></i> </div>
+    </div>
+</header>
+
+<div class="main-content">
+    
+    <div class="search-group category-group">
+        <select>
+            <option value="">カテゴリー検索</option>
+            <option value="ファンタジー">ファンタジー</option>
+            <option value="ミステリー">ミステリー</option>
+            <option value="ノンフィクション">ノンフィクション</option>
+            <option value="ホラー">ホラー</option>
+            <option value="専門書">専門書</option>
+            <option value="SF">SF</option>
+            <option value="恋愛">恋愛</option>
+            <option value="児童書">児童書</option>
+            <option value="えほん">えほん</option>
+            <option value="自己啓発本">自己啓発本</option>
+        </select>
+    </div>
+    
+    <h2 class="hit-count">0件ヒット</h2>
+    
+    <div class="results-list">
         </div>
-    </div>
+</div>
 
-    <div class="main-content">
-        <div id="hitCount" class="hit-count">0件ヒット</div>
-        
-        <div id="resultsList" class="results-list">
-            </div>
-    </div>
 </body>
 </html>
