@@ -27,10 +27,9 @@ body {
     left: 20px;
 }
 
-.app-icon {
-    font-size: 24px;
-    margin-right: 5px;
-    color: #dc143c; 
+.button-icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
 }
 
 /* ★★★ 検索コンテナの修正点 ★★★ */
