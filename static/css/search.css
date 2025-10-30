@@ -3,6 +3,7 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
+    /* 背景色を白に統一 */
     background-color: #fff;
     color: #333;
 }
@@ -12,10 +13,12 @@ body {
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    border-bottom: 1px solid #ccc;
-    background-color: #f8f8f8;
+    /* スクリーンショットのヘッダーの薄い青/グレーを再現 */
+    border-bottom: 1px solid #c0c0c0; /* 境界線を薄いグレーに */
+    background-color: #e0eaf3; /* 薄い水色系の背景 */
     height: 50px; 
     box-sizing: border-box;
+    font-size: 14px;
 }
 
 /* ホームリンクとアプリアイコン */
@@ -23,16 +26,18 @@ body {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #333;
+    color: #444; /* ホームの文字色 */
     font-size: 1.1em;
     margin-right: 30px;
     white-space: nowrap;
+    /* アイコンのすぐ右の「ホーム」の文字の高さと位置を調整 */
+    padding-top: 3px; 
 }
 
 .app-icon {
     font-size: 24px;
     margin-right: 5px;
-    color: red;
+    color: #dc143c; /* りんごのような赤色 */
 }
 
 /* 検索コンテナ */
@@ -47,18 +52,19 @@ body {
 .search-group {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    /* 検索窓の境界線は少し濃い目のグレー */
+    border: 1px solid #a0a0a0;
+    border-radius: 2px; /* 角をほんの少し丸く */
     background-color: #fff;
-    padding: 2px 5px;
-    height: 30px;
+    padding: 0px 5px; /* 上下のパディングを減らす */
+    height: 28px; /* 高さ調整 */
 }
 
 .search-group input {
     border: none;
     padding: 0 5px;
     outline: none;
-    font-size: 1em;
+    font-size: 13px; /* フォントサイズ調整 */
     width: 150px;
 }
 
@@ -66,10 +72,9 @@ body {
     border: none;
     padding: 0 5px;
     outline: none;
-    font-size: 1em;
-    height: 30px;
+    font-size: 13px;
+    height: 28px;
     width: 150px;
-    /* ブラウザ標準の矢印を非表示に */
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -78,7 +83,7 @@ body {
 .search-icon {
     cursor: pointer;
     color: #666;
-    font-size: 20px;
+    font-size: 18px; /* 虫眼鏡のサイズ調整 */
 }
 
 .category-group {
@@ -90,39 +95,43 @@ body {
     padding: 20px 20px 0 20px;
 }
 
-/* ヒット件数 */
+/* ヒット件数 (0件ヒット) */
 .hit-count {
     font-size: 1.5em;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* 下の線との距離を調整 */
     padding-bottom: 10px;
     padding-top: 10px;
+    text-align: center; /* 中央寄せ */
 }
 
 /* 検索結果リスト */
 .results-list {
     max-height: 400px; 
     overflow-y: auto;
-    padding-right: 10px; 
-    border-right: 1px solid #ccc; 
+    padding-right: 15px; /* スクロールバーのためのスペースを確保 */
+    /* スクリーンショットに見える右側の縦の線（スクロールバーの右端） */
+    border-right: 1px solid #a0a0a0; 
 }
 
 /* スクロールバーの見た目を再現 (WebKit/Blinkエンジン向け) */
 .results-list::-webkit-scrollbar {
-    width: 12px;
+    width: 10px; /* 幅を少し狭く */
 }
 .results-list::-webkit-scrollbar-thumb {
-    background-color: #bbb;
-    border-radius: 6px;
-    border: 3px solid #fff;
+    background-color: #b0b0b0; /* ツマミの色を再現 */
+    border-radius: 5px;
+    border: 2px solid #fff; /* 周りの白い余白を再現 */
 }
 .results-list::-webkit-scrollbar-track {
-    background: #fff;
+    background: #f0f0f0; /* トラックの背景色を薄いグレーに */
 }
 
-/* 検索結果アイテムのスタイル */
+
+/* 個々の書籍アイテム */
 .book-item {
-    border-bottom: 1px solid #eee;
+    /* アイテム間の薄い線 */
+    border-bottom: 1px solid #d0d0d0;
     margin-bottom: 20px;
     padding-bottom: 20px;
     padding-right: 5px;
@@ -136,13 +145,16 @@ body {
     align-items: flex-start;
 }
 
+/* 本の画像の枠 */
 .book-image {
     width: 100px;
     height: 140px;
     object-fit: cover;
+    /* 画像の枠線は濃いめのグレー */
     border: 1px solid #333;
 }
 
+/* 書籍情報と貸出状況のコンテナ */
 .book-info-container {
     display: flex;
     flex-direction: column;
@@ -151,6 +163,7 @@ body {
     height: 140px;
 }
 
+/* タイトルとあらすじのテキスト */
 .book-details {
     padding-top: 5px;
 }
@@ -159,8 +172,10 @@ body {
     font-size: 1em;
     margin: 0;
     line-height: 1.5;
+    color: #000; /* テキストの色を濃く */
 }
 
+/* 貸出状況のスタイル（右下に配置） */
 .book-availability-status {
     font-weight: bold;
     text-align: right;
@@ -169,10 +184,14 @@ body {
     margin-top: auto;
 }
 
+/* 貸出可 (緑色) */
 .availability-available {
-    color: green;
+    color: #006400; /* 濃い緑色を再現 */
+    font-size: 14px;
 }
 
+/* 貸出不可 (赤色) */
 .availability-unavailable {
-    color: red;
+    color: #cc0000; /* 濃い赤色を再現 */
+    font-size: 14px;
 }
