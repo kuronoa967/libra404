@@ -15,7 +15,7 @@ body {
     padding: 10px 20px;
     /* スクリーンショットのヘッダーの薄い青/グレーを再現 */
     border-bottom: 1px solid #c0c0c0; /* 境界線を薄いグレーに */
-    background-color: #e0eaf3; /* 薄い水色系の背景 */
+    background-color: #a2c2e6; /* 薄い水色系の背景 */
     height: 50px; 
     box-sizing: border-box;
     font-size: 14px;
