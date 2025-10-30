@@ -1,108 +1,51 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>検索画面</title>
-    <link rel="stylesheet" href="../static/css/search.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索画面（初期状態）</title>
+    
+    <link rel="stylesheet" href="search.css">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-    <div class="header">
-        <a href="home.html" class="home-link">
-            <span class="material-icons">home</span> ホーム
-        </a>
+    <div class="header">
+        <a href="home.html" class="home-link">
+            <span class="app-icon">🍎</span> ホーム
+        </a>
 
-        <div class="search-container">
-                        <div class="search-group">
-                <input type="text" id="titleInput" placeholder="タイトル検索">
-                <span class="material-icons" onclick="searchByTitle()">search</span>
-            </div>
+        <div class="search-container">
+            <div class="search-group">
+                <input type="text" id="titleInput" placeholder="タイトル検索">
+                <span class="material-icons search-icon">search</span>
+            </div>
 
-                        <div class="search-group">
-                <select id="categorySelect">
-                    <option value="">カテゴリー検索</option>
-                    <option value="ファンタジー">ファンタジー</option>
-                    <option value="ミステリー">ミステリー</option>
-                    <option value="ノンフィクション">ノンフィクション</option>
-                    <option value="ホラー">ホラー</option>
-                    <option value="専門書">専門書</option>
-                    <option value="SF">SF</option>
-                    <option value="恋愛">恋愛</option>
-                    <option value="児童書">児童書</option>
-                    <option value="えほん">えほん</option>
-                    <option value="自己啓発本">自己啓発本</option>
-                </select>
-                <span class="material-icons" onclick="searchByCategory()">search</span>
-            </div>
-        </div>
-    </div>
+            <div class="search-group category-group">
+                <select id="categorySelect">
+                    <option value="">カテゴリー検索</option>
+                    <option value="ファンタジー">ファンタジー</option>
+                    <option value="ミステリー">ミステリー</option>
+                    <option value="ノンフィクション">ノンフィクション</option>
+                    <option value="ホラー">ホラー</option>
+                    <option value="専門書">専門書</option>
+                    <option value="SF">SF</option>
+                    <option value="恋愛">恋愛</option>
+                    <option value="児童書">児童書</option>
+                    <option value="えほん">えほん</option>
+                    <option value="自己啓発本">自己啓発本</option>
+                </select>
+                <span class="material-icons search-icon">search</span>
+            </div>
+        </div>
+    </div>
 
-    <div class="main-content">
-        <div id="hitCount" class="hit-count">検索結果がここに表示されます</div>
-        <div id="resultsList" class="results-list"></div>
-    </div>
-
-    <script>
-        // 仮データ
-        const books = [
-            // ここに「本のID」のような一意の値を加えることを強く推奨しますが、
-            // 今回はタイトルをURLエンコードして遷移先の識別子とします。
-            { title: "星の王子さま", category: "ファンタジー", description: "大人と子どもの心を描いた名作。", available: true, image: "https://via.placeholder.com/100x140?text=星の王子さま" },
-            { title: "シャーロック・ホームズの冒険", category: "ミステリー", description: "名探偵ホームズが活躍する推理小説。", available: false, image: "https://via.placeholder.com/100x140?text=ホームズ" },
-            { title: "宇宙への旅", category: "SF", description: "未来の宇宙探査を描いた冒険物語。", available: true, image: "https://via.placeholder.com/100x140?text=SF" },
-            { title: "心を整える", category: "自己啓発本", description: "前向きに生きるためのヒント集。", available: true, image: "https://via.placeholder.com/100x140?text=自己啓発" },
-            { title: "世界の不思議", category: "ノンフィクション", description: "実際に起きた驚きの出来事を紹介。", available: false, image: "https://via.placeholder.com/100x140?text=世界の不思議" }
-        ];
-
-        // タイトル検索
-        function searchByTitle() {
-            const keyword = document.getElementById("titleInput").value.trim();
-            const results = books.filter(b => b.title.includes(keyword));
-            showResults(results);
-        }
-
-        // カテゴリー検索
-        function searchByCategory() {
-            const selected = document.getElementById("categorySelect").value;
-            const results = books.filter(b => b.category === selected);
-            showResults(results);
-        }
-
-        // 結果表示
-        function showResults(results) {
-            const hitCount = document.getElementById("hitCount");
-            const resultsList = document.getElementById("resultsList");
-            resultsList.innerHTML = "";
-
-            hitCount.textContent = results.length + "件ヒット";
-
-            results.forEach(book => {
-                // 詳細画面へのURLを生成
-                // bookTitleをURLエンコードしてクエリパラメータとして渡す
-                const detailUrl = `bdtail.html?title=${encodeURIComponent(book.title)}`;
-                
-                const item = document.createElement("div");
-                item.className = "book-item";
-                // item全体を<a>タグで囲み、クリックで詳細画面に遷移させる
-                item.innerHTML = `
-                    <a href="${detailUrl}" class="book-detail-link">
-                        <img src="${book.image}" alt="${book.title}" class="book-image">
-                        <div class="book-info">
-                            <h3>${book.title}</h3>
-                            <p>${book.description}</p>
-                            <p class="${book.available ? "availability" : "unavailable"}">
-                                ${book.available ? "貸出可" : "貸出不可"}
-                            </p>
-                        </div>
-                    </a>
-                `;
-                resultsList.appendChild(item);
-            });
-        }
-
-        // ページロード時に全件表示または初期検索を行う (お好みで)
-        // window.onload = () => showResults(books); 
-    </script>
+    <div class="main-content">
+        <div id="hitCount" class="hit-count">0件ヒット</div>
+        
+        <div id="resultsList" class="results-list">
+            </div>
+    </div>
 </body>
 </html>
