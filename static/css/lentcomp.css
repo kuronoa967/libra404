@@ -1,58 +1,74 @@
-        body {
-            font-family: sans-serif;
-            text-align: center; /* 全体を中央寄せ */
-            background-color: #f4f4f4;
-            padding-top: 50px;
-        }
-        form {
-            display: inline-block;
-            text-align: left;
-        }
-        .form-group {
-            margin: 30px 0;
-        }
-        label {
-            display: inline-block;
-            width: 150px;
-        }
-        input {
-            width: 300px;
-            padding: 5px;
-        }
-        /* <a>タグをボタンのように見せるためのスタイル */
-        .btn {
-            border: 1px solid #000;
-            border-radius: 8px; /* 角丸 */
-            padding: 5px 15px;
-            margin: 20px; /* 上下左右に20pxのマージン */
-            background: #fff;
-            cursor: pointer;
-            /* <a>タグのデフォルトのスタイルをリセット */
-            text-decoration: none;
-            color: #000;
-            display: block; /* 縦に並べるためにブロック要素化 */
-            width: 250px;
-            margin-left: auto; /* 中央寄せ */
-            margin-right: auto; /* 中央寄せ */
-        }
-        .button-group {
-            text-align: center;
-            margin-top: 15px;
-        }
-        /* ==================================== */
-        /* 画面固有のスタイル */
-        /* ==================================== */
-        #book-title-display {
-            border: 1px solid #000;
-            padding: 10px 30px;
-            margin: 0 auto 30px; /* 上部にボタンとの間隔を開ける */
-            display: inline-block;
-            font-size: 1.5em;
-            background-color: #fff;
-        }
+/* 全体のフォントと中央配置 */
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* 背景を白に設定 */
+    
+    /* 画面の中央にコンテンツを配置するためのFlexbox設定 */
+    display: flex;
+    flex-direction: column; /* 縦に並べる */
+    justify-content: center; /* 垂直方向の中央寄せ */
+    align-items: center; /* 水平方向の中央寄せ */
+    min-height: 100vh; /* 画面全体を高さとする */
+}
 
-        #conf-message {
-            font-size: 2em;
-            color: #333; /* 貸出完了の色は今回は黒に */
-            margin-bottom: 50px;
-        }
+/* 画面固有のスタイル */
+
+/* 本のタイトル表示エリア */
+#book-title-display {
+    border: 1px solid #000;
+    padding: 10px 30px;
+    margin-bottom: 30px; /* 「貸出完了」との間隔 */
+    display: inline-block; /* コンテンツの幅に合わせる */
+    font-size: 1.5em;
+    background-color: #fff;
+}
+
+/* 貸出完了メッセージ */
+#conf-message {
+    font-size: 2em;
+    font-weight: bold; /* メッセージを目立たせる */
+    color: #000;
+    margin-bottom: 80px; /* ボタンとの間隔 */
+}
+
+/* ボタンのグループ */
+.button-group {
+    /* ボタンを縦に並べるためのFlexbox */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* ボタン間の間隔 */
+}
+
+/* ボタンの共通スタイル */
+.app-button {
+    /* <a>タグをボタンのように見せるためのスタイル */
+    width: 250px;
+    padding: 15px 30px; /* ボタンの高さを確保 */
+    border: 1px solid #000;
+    border-radius: 8px; /* 角丸 */
+    background: #fff;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: normal;
+    
+    /* <a>タグのデフォルトのスタイルをリセット */
+    text-decoration: none;
+    color: #000;
+    
+    /* Flexboxの子要素として中央寄せは不要 (button-groupで中央寄せ済み) */
+}
+
+.app-button:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* --- 提供されたCSSのうち不要なものを削除（フォーム関連など） --- */
+/*
+bodyのpadding-top: 50px; は不要。Flexboxで中央寄せする。
+form, .form-group, label, input のスタイルは削除。
+.btn は .app-button に置き換え。
+*/
