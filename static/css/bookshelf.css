@@ -1,4 +1,4 @@
-/* Google Material Symbolsの設定 */
+/* Google Material Symbolsの設定（再追加） */
 .material-symbols-outlined {
     font-variation-settings:
         'FILL' 1,
@@ -51,7 +51,7 @@ body {
 
 .home-link {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* アイコンとテキストを縦に並べる */
     align-items: center;
     text-decoration: none;
     color: var(--text-color);
@@ -59,8 +59,8 @@ body {
 }
 
 .book-icon {
-    font-size: var(--icon-size);
-    color: #3f51b5; 
+    font-size: var(--icon-size); /* アイコンサイズを適用 */
+    color: #3f51b5; /* アイコンの色 */
     margin: 0;
 }
 
@@ -100,101 +100,24 @@ body {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-}
-/* ドロップダウンの矢印を再現 */
-.filter-dropdown::after {
-    content: '▼';
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    pointer-events: none;
+    /* ドロップダウンの矢印はブラウザデフォルトか画像で */
 }
 
+/* フィルターボタン */
 .filter-button {
     border: 1px solid var(--border-color);
     background: white;
     padding: 2px;
     line-height: 1;
     cursor: pointer;
+    display: flex; /* アイコンを中央に配置するため */
+    align-items: center;
+    justify-content: center;
 }
 
 .filter-icon {
-    font-size: 25px;
+    font-size: 25px; /* アイコンサイズを調整 */
     color: #000;
 }
 
-/* ==================
-   2. メインコンテンツとリスト
-   ================== */
-.bookshelf-main {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding-top: 10px;
-}
-
-.book-list-wrapper {
-    /* スクロールバーのスペースが不要になったため、幅を自動調整または広げる */
-    width: 100%; 
-    max-width: 800px;
-    margin: 0 auto;
-    padding-right: 0; /* スクロールバー領域の確保を削除 */
-}
-
-.book-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 15px 0;
-    position: relative;
-}
-
-/* 各アイテムの区切り線 */
-.book-item:not(:last-child):after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-top: 1px solid var(--border-color);
-}
-
-.book-cover {
-    width: 100px;
-    height: 150px;
-    border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.book-cover-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.placeholder-text {
-    position: absolute;
-    color: #000;
-    font-size: 14px;
-}
-
-.book-details {
-    text-align: left;
-    flex-grow: 1;
-}
-
-.book-details p {
-    margin: 8px 0;
-    font-size: 16px;
-}
-
-/* スクロールバーのダミー要素を削除 */
-.scrollbar-placeholder,
-.scrollbar-thumb {
-    display: none;
-}
+/* =
