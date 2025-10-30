@@ -8,15 +8,21 @@ body {
     color: #333;
 }
 
-/* ヘッダーセクション */
+/* --- ヘッダーセクション（中央配置の核心部分） --- */
 .header {
     display: flex;
-    align-items: center;
+    /* 🍏 要素を縦に並べる */
+    flex-direction: column; 
+    /* 🍏 縦方向の中央に寄せる (ホームと検索窓のセットを中央に) */
+    justify-content: center;
+    /* 🍏 横方向の要素（ホームリンクなど）を中央に寄せる */
+    align-items: center; 
     padding: 10px 20px;
     /* スクリーンショットのヘッダーの薄い青/グレーを再現 */
-    border-bottom: 1px solid #a2c2e6; /* 境界線を薄いグレーに */
-    background-color: #a2c2e6; /* 薄い水色系の背景 */
-    height: 150px; 
+    border-bottom: 1px solid #a2c2e6;
+    background-color: #a2c2e6;
+    /* 高さを調整 */
+    height: 100px; 
     box-sizing: border-box;
     font-size: 14px;
 }
@@ -28,10 +34,12 @@ body {
     text-decoration: none;
     color: #444; /* ホームの文字色 */
     font-size: 1.1em;
-    margin-right: 30px;
     white-space: nowrap;
-    /* アイコンのすぐ右の「ホーム」の文字の高さと位置を調整 */
-    padding-top: 3px; 
+    padding-top: 3px;
+    /* 画面左端に配置し直すための調整 */
+    align-self: flex-start; /* 縦方向Flexboxの中で、自身を左端に寄せる */
+    margin-right: auto; /* 左寄せを確実にするため */
+    margin-bottom: 5px; /* 検索フォームとの間にスペース */
 }
 
 .app-icon {
@@ -44,8 +52,9 @@ body {
 .search-container {
     display: flex;
     gap: 10px;
-    flex-grow: 1;
-    justify-content: flex-end;
+    flex-grow: 0; 
+    /* 🌟 横方向の**中央配置**を実現 🌟 */
+    margin: 0 auto; 
 }
 
 /* 個々の検索グループ */
@@ -54,10 +63,15 @@ body {
     align-items: center;
     /* 検索窓の境界線は少し濃い目のグレー */
     border: 1px solid #a0a0a0;
-    border-radius: 2px; /* 角をほんの少し丸く */
+    border-radius: 2px;
     background-color: #fff;
     padding: 0px 5px; /* 上下のパディングを減らす */
     height: 28px; /* 高さ調整 */
+}
+
+/* 🍏 タイトル検索グループのスタイル（中央に配置されるフォーム） */
+.title-search-group {
+    width: 300px; /* フォームの幅を固定 */
 }
 
 .search-group input {
@@ -65,7 +79,7 @@ body {
     padding: 0 5px;
     outline: none;
     font-size: 13px; /* フォントサイズ調整 */
-    width: 150px;
+    width: 100%; /* 親要素の幅を使う */
 }
 
 .search-group select {
@@ -86,9 +100,8 @@ body {
     font-size: 18px; /* 虫眼鏡のサイズ調整 */
 }
 
-.category-group {
-     margin-right: 15px; 
-}
+/* category-group は今回はヘッダー中央配置から除外 */
+/* .category-group { margin-right: 15px; } */
 
 /* メインコンテンツ */
 .main-content {
@@ -107,11 +120,11 @@ body {
 
 /* 検索結果リスト */
 .results-list {
-    max-height: 400px; 
+    max-height: 400px;
     overflow-y: auto;
     padding-right: 15px; /* スクロールバーのためのスペースを確保 */
     /* スクリーンショットに見える右側の縦の線（スクロールバーの右端） */
-    border-right: 1px solid #a0a0a0; 
+    border-right: 1px solid #a0a0a0;
 }
 
 /* スクロールバーの見た目を再現 (WebKit/Blinkエンジン向け) */
@@ -126,7 +139,6 @@ body {
 .results-list::-webkit-scrollbar-track {
     background: #f0f0f0; /* トラックの背景色を薄いグレーに */
 }
-
 
 /* 個々の書籍アイテム */
 .book-item {
@@ -179,7 +191,7 @@ body {
 .book-availability-status {
     font-weight: bold;
     text-align: right;
-    align-self: flex-end; 
+    align-self: flex-end;
     padding-right: 10px;
     margin-top: auto;
 }
