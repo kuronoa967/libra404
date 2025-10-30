@@ -3,95 +3,92 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    /* 背景色を白に統一 */
     background-color: #fff;
     color: #333;
 }
 
-/* --- ヘッダーセクション（中央配置の核心部分） --- */
+/* ヘッダーセクション */
 .header {
     display: flex;
-    /* 🍏 要素を横に並べる */
-    flex-direction: row; 
-    /* 🍏 子要素を両端と中央に配置（均等にスペースを空ける） */
-    justify-content: space-between; 
-    /* 🍏 要素を垂直方向の中央に揃える */
     align-items: center;
     padding: 10px 20px;
-    /* スクリーンショットのヘッダーの薄い青/グレーを再現 */
-    border-bottom: 1px solid #a2c2e6; /* 境界線を薄いグレーに */
-    background-color: #a2c2e6; /* 薄い水色系の背景 */
-    height: 50px; /* 検索窓の高さに合わせて調整 */
+    border-bottom: 1px solid #c0c0c0; 
+    background-color: #e0eaf3; 
+    height: 50px; 
     box-sizing: border-box;
     font-size: 14px;
 }
 
-/* ホームリンクとアプリアイコン */
+/* ホームリンクとアプリアイコン (左端に固定) */
 .home-link {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #444; /* ホームの文字色 */
+    color: #444; 
     font-size: 1.1em;
-    /* ヘッダー要素としては左端に固定されるため margin-right: 30px は不要。 */
-    /* ただし、元の値に合わせて flex-shrink を設定 */
-    flex-shrink: 0; 
+    margin-right: 30px;
     white-space: nowrap;
-    padding-top: 3px;
+    padding-top: 3px; 
 }
 
 .app-icon {
     font-size: 24px;
     margin-right: 5px;
-    color: #dc143c; /* りんごのような赤色 */
+    color: #dc143c; 
 }
 
-/* 検索コンテナ (タイトル検索フォームのラッパー) */
+/* ★★★ 検索コンテナの修正点 ★★★ */
+
+/* 検索コンテナ全体: ホームリンクとカテゴリ検索の間のスペースを占有し、中央寄せ・右寄せを制御 */
 .search-container {
     display: flex;
-    /* 🍏 中央の空きスペースをすべて占有 */
-    flex-grow: 1; 
-    /* 🌟 内部要素（タイトル検索フォーム）を中央に寄せる 🌟 */
-    justify-content: center;
-    align-items: center;
-    /* 左右の要素（ホームとカテゴリ）との間にスペースを空ける */
-    margin: 0 20px;
+    flex-grow: 1; /* ホームリンクの右側の残りのスペースをすべて占有 */
+    align-items: center; 
+    /* 配置のロジック:
+       1. タイトル検索を中央に近づける
+       2. カテゴリ検索を右端に寄せる
+       この配置は、スペースを均等に分配する 'space-between' に似ていますが、
+       タイトル検索を中央に固定するために、margin-left: auto; を組み合わせて使います。
+    */
+    justify-content: flex-end; /* 初期配置を右に寄せ、タイトル検索を左からプッシュ */
+    gap: 10px; /* カテゴリ検索と右端の隙間は不要だが、内部要素間の隙間として残す */
 }
 
-/* 個々の検索グループ */
+/* タイトル検索グループ (中央に配置) */
+/* flex-grow: 1 のコンテナ内で、マージンを使って中央に押し出す */
+.search-group:nth-child(1) { /* タイトル検索 (1番目の .search-group) */
+    /* タイトル検索を中央に配置するための調整 */
+    margin-right: auto; 
+    margin-left: auto;
+    /* 右端に配置されるカテゴリ検索との間に十分なスペースを確保するため、左マージンを優先 */
+    /* この設定により、flex-grow: 1 のコンテナ内で要素が中央に配置されます */
+    transform: translateX(-50%); /* 中央に寄せすぎないための微調整 */
+}
+
+/* カテゴリ検索グループ (右端に配置) */
+.category-group { 
+    /* 右端に固定するため、特別なマージンは不要 */
+    margin-right: 0;
+}
+
+/* 個々の検索グループの共通スタイル */
 .search-group {
     display: flex;
     align-items: center;
-    /* 検索窓の境界線は少し濃い目のグレー */
     border: 1px solid #a0a0a0;
-    border-radius: 2px; /* 角をほんの少し丸く */
+    border-radius: 2px;
     background-color: #fff;
-    padding: 0px 5px; /* 上下のパディングを減らす */
-    height: 28px; /* 高さ調整 */
+    padding: 0px 5px;
+    height: 28px; 
+    flex-shrink: 0; /* スペースが不足しても縮まないように */
 }
-
-/* 🍏 タイトル検索グループのスタイル (中央に配置されるフォーム) */
-.title-search-group {
-    /* search-container の中央に配置されるように幅を設定 */
-    width: 300px;
-}
-
-/* 🍎 カテゴリー検索グループのスタイル（ヘッダーの右端に配置されるフォーム） */
-.category-group {
-    /* 右端固定のため幅を広げない */
-    flex-shrink: 0;
-    /* カテゴリー検索内の select 要素に影響しないように、margin: 0; を設定 */
-    margin: 0; 
-}
-
 
 .search-group input {
     border: none;
     padding: 0 5px;
     outline: none;
-    font-size: 13px; /* フォントサイズ調整 */
-    /* 300px の親要素内 (title-search-group) で幅を占有 */
-    width: 100%; 
+    font-size: 13px;
+    width: 150px;
 }
 
 .search-group select {
@@ -109,8 +106,9 @@ body {
 .search-icon {
     cursor: pointer;
     color: #666;
-    font-size: 18px; /* 虫眼鏡のサイズ調整 */
+    font-size: 18px; 
 }
+/* ★★★ 修正点ここまで ★★★ */
 
 
 /* メインコンテンツ */
@@ -122,38 +120,36 @@ body {
 .hit-count {
     font-size: 1.5em;
     font-weight: bold;
-    margin-bottom: 15px; /* 下の線との距離を調整 */
+    margin-bottom: 15px; 
     padding-bottom: 10px;
     padding-top: 10px;
-    text-align: center; /* 中央寄せ */
+    text-align: center; 
 }
 
 /* 検索結果リスト */
 .results-list {
-    max-height: 400px;
+    max-height: 400px; 
     overflow-y: auto;
-    padding-right: 15px; /* スクロールバーのためのスペースを確保 */
-    /* スクリーンショットに見える右側の縦の線（スクロールバーの右端） */
-    border-right: 1px solid #a0a0a0;
+    padding-right: 15px; 
+    border-right: 1px solid #a0a0a0; 
 }
 
 /* スクロールバーの見た目を再現 (WebKit/Blinkエンジン向け) */
 .results-list::-webkit-scrollbar {
-    width: 10px; /* 幅を少し狭く */
+    width: 10px; 
 }
 .results-list::-webkit-scrollbar-thumb {
-    background-color: #b0b0b0; /* ツマミの色を再現 */
+    background-color: #b0b0b0; 
     border-radius: 5px;
-    border: 2px solid #fff; /* 周りの白い余白を再現 */
+    border: 2px solid #fff; 
 }
 .results-list::-webkit-scrollbar-track {
-    background: #f0f0f0; /* トラックの背景色を薄いグレーに */
+    background: #f0f0f0; 
 }
 
 
 /* 個々の書籍アイテム */
 .book-item {
-    /* アイテム間の薄い線 */
     border-bottom: 1px solid #d0d0d0;
     margin-bottom: 20px;
     padding-bottom: 20px;
@@ -173,7 +169,6 @@ body {
     width: 100px;
     height: 140px;
     object-fit: cover;
-    /* 画像の枠線は濃いめのグレー */
     border: 1px solid #333;
 }
 
@@ -195,26 +190,26 @@ body {
     font-size: 1em;
     margin: 0;
     line-height: 1.5;
-    color: #000; /* テキストの色を濃く */
+    color: #000;
 }
 
 /* 貸出状況のスタイル（右下に配置） */
 .book-availability-status {
     font-weight: bold;
     text-align: right;
-    align-self: flex-end;
+    align-self: flex-end; 
     padding-right: 10px;
     margin-top: auto;
 }
 
 /* 貸出可 (緑色) */
 .availability-available {
-    color: #006400; /* 濃い緑色を再現 */
+    color: #006400; 
     font-size: 14px;
 }
 
 /* 貸出不可 (赤色) */
 .availability-unavailable {
-    color: #cc0000; /* 濃い赤色を再現 */
+    color: #cc0000; 
     font-size: 14px;
 }
