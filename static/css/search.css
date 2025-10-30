@@ -27,7 +27,7 @@ body {
     left: 20px;
 }
 
-.button-icon {
+img.button-icon {
     width: var(--icon-size);
     height: var(--icon-size);
 }
