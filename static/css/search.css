@@ -11,10 +11,10 @@ body {
 .header {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 20px 50px;
     border-bottom: 1px solid #a2c2e6; 
     background-color: #a2c2e6; 
-    height: 50px; 
+    height: 150px; 
     box-sizing: border-box;
     font-size: 14px;
 }
