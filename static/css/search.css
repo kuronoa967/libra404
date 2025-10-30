@@ -8,15 +8,20 @@ body {
     color: #333;
 }
 
-/* ヘッダーセクション */
+/* --- ヘッダーセクション（中央配置の核心部分） --- */
 .header {
     display: flex;
+    /* 🍏 要素を横に並べる */
+    flex-direction: row; 
+    /* 🍏 子要素を両端と中央に配置（均等にスペースを空ける） */
+    justify-content: space-between; 
+    /* 🍏 要素を垂直方向の中央に揃える */
     align-items: center;
     padding: 10px 20px;
     /* スクリーンショットのヘッダーの薄い青/グレーを再現 */
     border-bottom: 1px solid #a2c2e6; /* 境界線を薄いグレーに */
     background-color: #a2c2e6; /* 薄い水色系の背景 */
-    height: 50px; 
+    height: 50px; /* 検索窓の高さに合わせて調整 */
     box-sizing: border-box;
     font-size: 14px;
 }
@@ -28,10 +33,11 @@ body {
     text-decoration: none;
     color: #444; /* ホームの文字色 */
     font-size: 1.1em;
-    margin-right: 30px;
+    /* ヘッダー要素としては左端に固定されるため margin-right: 30px は不要。 */
+    /* ただし、元の値に合わせて flex-shrink を設定 */
+    flex-shrink: 0; 
     white-space: nowrap;
-    /* アイコンのすぐ右の「ホーム」の文字の高さと位置を調整 */
-    padding-top: 3px; 
+    padding-top: 3px;
 }
 
 .app-icon {
@@ -40,13 +46,16 @@ body {
     color: #dc143c; /* りんごのような赤色 */
 }
 
-/* ★★★ 検索コンテナの修正点 ★★★ */
+/* 検索コンテナ (タイトル検索フォームのラッパー) */
 .search-container {
     display: flex;
-    gap: 10px;
-    flex-grow: 1; /* 残りのスペースを全て占有 */
-    justify-content: flex-end; /* 子要素（検索グループ）を右端に寄せる */
-    align-items: center; /* 垂直方向中央寄せ */
+    /* 🍏 中央の空きスペースをすべて占有 */
+    flex-grow: 1; 
+    /* 🌟 内部要素（タイトル検索フォーム）を中央に寄せる 🌟 */
+    justify-content: center;
+    align-items: center;
+    /* 左右の要素（ホームとカテゴリ）との間にスペースを空ける */
+    margin: 0 20px;
 }
 
 /* 個々の検索グループ */
@@ -61,12 +70,28 @@ body {
     height: 28px; /* 高さ調整 */
 }
 
+/* 🍏 タイトル検索グループのスタイル (中央に配置されるフォーム) */
+.title-search-group {
+    /* search-container の中央に配置されるように幅を設定 */
+    width: 300px;
+}
+
+/* 🍎 カテゴリー検索グループのスタイル（ヘッダーの右端に配置されるフォーム） */
+.category-group {
+    /* 右端固定のため幅を広げない */
+    flex-shrink: 0;
+    /* カテゴリー検索内の select 要素に影響しないように、margin: 0; を設定 */
+    margin: 0; 
+}
+
+
 .search-group input {
     border: none;
     padding: 0 5px;
     outline: none;
     font-size: 13px; /* フォントサイズ調整 */
-    width: 150px;
+    /* 300px の親要素内 (title-search-group) で幅を占有 */
+    width: 100%; 
 }
 
 .search-group select {
@@ -87,12 +112,6 @@ body {
     font-size: 18px; /* 虫眼鏡のサイズ調整 */
 }
 
-/* 検索窓間の間隔は、親の .search-container の gap で調整されるため、個別の margin は不要です。 */
-.category-group {
-     /* margin-right: 15px; */ /* 親要素の gap: 10px が適用されるため削除 */
-}
-/* ★★★ 修正点ここまで ★★★ */
-
 
 /* メインコンテンツ */
 .main-content {
@@ -111,11 +130,11 @@ body {
 
 /* 検索結果リスト */
 .results-list {
-    max-height: 400px; 
+    max-height: 400px;
     overflow-y: auto;
     padding-right: 15px; /* スクロールバーのためのスペースを確保 */
     /* スクリーンショットに見える右側の縦の線（スクロールバーの右端） */
-    border-right: 1px solid #a0a0a0; 
+    border-right: 1px solid #a0a0a0;
 }
 
 /* スクロールバーの見た目を再現 (WebKit/Blinkエンジン向け) */
@@ -183,7 +202,7 @@ body {
 .book-availability-status {
     font-weight: bold;
     text-align: right;
-    align-self: flex-end; 
+    align-self: flex-end;
     padding-right: 10px;
     margin-top: auto;
 }
