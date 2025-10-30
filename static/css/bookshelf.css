@@ -1,7 +1,7 @@
 :root {
     --text-color: #333;
     --border-color: #ccc;
-    --app-icon-size: 28px;
+    --icon-size: 40px;
 }
 
 body {
@@ -43,13 +43,9 @@ body {
     font-size: 14px;
 }
 
-.app-icon {
-    width: var(--app-icon-size);
-    height: var(--app-icon-size);
-    /* 実際には画像をロードする必要があります */
-    background-color: #f00; /* 仮のアイコン色 */
-    border-radius: 6px;
-    margin-bottom: 3px;
+.button-icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
 }
 
 .page-title {
@@ -78,25 +74,6 @@ body {
     -webkit-appearance: none; /* デフォルトの矢印を非表示 */
     -moz-appearance: none;
     appearance: none;
-}
-
-.filter-button {
-    width: 30px;
-    height: 30px;
-    border: 1px solid var(--border-color);
-    background-color: white;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-}
-
-.filter-icon {
-    /* フィルタアイコンの再現 (画像に合わせる) */
-    display: block;
-    width: 16px;
-    height: 16px;
-    background-color: var(--text-color);
-    clip-path: polygon(0 0, 100% 0, 100% 20%, 60% 20%, 60% 40%, 40% 40%, 40% 20%, 0 20%);
 }
 
 /* ==================
