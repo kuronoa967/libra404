@@ -1,52 +1,58 @@
 /* 全体のフォントと中央配置 */
 body {
     font-family: sans-serif;
-    text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #fff; /* 背景を白に設定 */
+    background-color: #ffffff; /* 背景を白に設定 */
     
     /* 画面の中央にコンテンツを配置するためのFlexbox設定 */
     display: flex;
-    flex-direction: column; /* 縦に並べる */
+    flex-direction: column; 
     justify-content: center; /* 垂直方向の中央寄せ */
     align-items: center; /* 水平方向の中央寄せ */
     min-height: 100vh; /* 画面全体を高さとする */
 }
 
-/* 画面固有のスタイル */
+/* 画面中央に配置されるコンテンツを囲むコンテナ */
+.completion-container {
+    text-align: center;
+}
 
 /* 本のタイトル表示エリア */
 #book-title-display {
     border: 1px solid #000;
     padding: 10px 30px;
-    margin-bottom: 30px; /* 「貸出完了」との間隔 */
-    display: inline-block; /* コンテンツの幅に合わせる */
-    font-size: 1.5em;
+    
+    /* 「貸出完了」メッセージとの間隔を確保 */
+    margin-bottom: 20px; 
+    
+    display: inline-block; 
+    font-size: 1.5em; /* フォントサイズ調整 */
     background-color: #fff;
 }
 
 /* 貸出完了メッセージ */
 #conf-message {
     font-size: 2em;
-    font-weight: bold; /* メッセージを目立たせる */
+    font-weight: normal; 
     color: #000;
-    margin-bottom: 80px; /* ボタンとの間隔 */
+    
+    /* ボタンとの間隔を確保 */
+    margin-bottom: 60px; 
 }
 
-/* ボタンのグループ */
+/* ボタンのグループ (縦並び) */
 .button-group {
-    /* ボタンを縦に並べるためのFlexbox */
     display: flex;
     flex-direction: column;
-    gap: 20px; /* ボタン間の間隔 */
+    gap: 15px; /* ボタン間の間隔 */
 }
 
 /* ボタンの共通スタイル */
 .app-button {
     /* <a>タグをボタンのように見せるためのスタイル */
-    width: 250px;
-    padding: 15px 30px; /* ボタンの高さを確保 */
+    width: 250px; /* 画像に合わせて幅を固定 */
+    padding: 12px 30px; /* 画像に合わせて高さを調整 */
     border: 1px solid #000;
     border-radius: 8px; /* 角丸 */
     background: #fff;
@@ -54,21 +60,14 @@ body {
     font-size: 1.1em;
     font-weight: normal;
     
-    /* <a>タグのデフォルトのスタイルをリセット */
+    /* <a>タグのスタイルをリセット */
     text-decoration: none;
     color: #000;
     
-    /* Flexboxの子要素として中央寄せは不要 (button-groupで中央寄せ済み) */
+    /* text-align: center が効くように */
+    display: block; 
 }
 
 .app-button:hover {
     background-color: #f0f0f0;
 }
-
-
-/* --- 提供されたCSSのうち不要なものを削除（フォーム関連など） --- */
-/*
-bodyのpadding-top: 50px; は不要。Flexboxで中央寄せする。
-form, .form-group, label, input のスタイルは削除。
-.btn は .app-button に置き換え。
-*/
