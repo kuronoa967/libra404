@@ -1,35 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>本の詳細</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="../static/css/bdetail.css">
 </head>
 <body>
 
 <div class="header">
     <a href="home.html" class="home-link">
-        <span class="material-icons">home</span> ホーム
+        <span class="material-symbols-outlined book-icon">
+            book
+        </span>
+        ホーム
     </a>
+    <div class="loan-status loan-unavailable">
+        貸し出し
+        <br>
+        不可
+    </div>
 </div>
 
 <div class="main-content">
-    <img id="bookImage" class="book-image" src="" alt="本の画像">
+    <div class="book-image-container">
+        <img id="bookImage" class="book-image" src="" alt="本の画像">
+        <div class="image-placeholder">本の画像</div>
+    </div>
+    
     <div class="book-info">
-        <p><strong>タイトル：</strong><span id="bookTitle"></span></p>
-        <p><strong>著者：</strong><span id="bookAuthor"></span> &nbsp;&nbsp; <strong>出版社：</strong><span id="bookPublisher"></span></p>
-        <p><strong>カテゴリ：</strong><span id="bookCategory"></span></p>
-        <p><strong>あらすじ：</strong></p>
-        <p id="bookDescription"></p>
+        <p class="info-line">
+            <span class="info-label title-label">タイトル：</span><span id="bookTitle" class="info-value title-value"></span>
+        </p>
+        <p class="info-line">
+            <span class="info-label">著者：</span><span id="bookAuthor" class="info-value author-value"></span>
+            <span class="publisher-group">
+                <span class="info-label publisher-label">出版社：</span><span id="bookPublisher" class="info-value publisher-value"></span>
+            </span>
+        </p>
+        <p class="info-line">
+            <span class="info-label">カテゴリ：</span><span id="bookCategory" class="info-value category-value"></span>
+        </p>
+        <p class="info-line abstract-label-line">
+            <span class="info-label abstract-label">あらすじ</span>
+        </p>
+        <div class="abstract-box">
+            <p id="bookDescription" class="abstract-text"></p>
+        </div>
     </div>
 </div>
 
 <div class="buttons">
-    <button id="back">戻る</button>
-    <button id="borrow">借りる</button>
+    <button id="back" class="app-button back-button">戻る</button>
+    <button id="borrow" class="app-button borrow-button">借りる</button>
 </div>
+
 
 <script>
 // URLパラメータ取得
@@ -45,30 +71,53 @@ function getQueryParams() {
 // 本情報表示
 window.onload = function() {
     const params = getQueryParams();
-    document.getElementById("bookTitle").textContent = params.title || "";
-    document.getElementById("bookAuthor").textContent = params.author || "";
-    document.getElementById("bookPublisher").textContent = params.publisher || "";
-    document.getElementById("bookCategory").textContent = params.category || "";
-    document.getElementById("bookDescription").textContent = params.description || "";
-    document.getElementById("bookImage").src = params.image || "https://via.placeholder.com/150x210?text=No+Image";
+    // 表示データの設定
+    document.getElementById("bookTitle").textContent = params.title || "タイトルサンプル";
+    document.getElementById("bookAuthor").textContent = params.author || "著者サンプル";
+    document.getElementById("bookPublisher").textContent = params.publisher || "出版社サンプル";
+    document.getElementById("bookCategory").textContent = params.category || "カテゴリサンプル";
+    document.getElementById("bookDescription").textContent = params.description || "ここに書籍のあらすじテキストが入ります。ここに書籍のあらすじテキストが入ります。ここに書籍のあらすじテキストが入ります。";
+    
+    const bookImage = document.getElementById("bookImage");
+    const imageUrl = params.image || ""; // 画像URLを取得
+    
+    if (imageUrl) {
+        bookImage.src = imageUrl;
+        // 画像がある場合はプレースホルダーを非表示に
+        document.querySelector('.image-placeholder').style.display = 'none';
+    } else {
+        // 画像がない場合はダミー画像を使用せず、プレースホルダーを表示
+        bookImage.style.display = 'none';
+        document.querySelector('.image-placeholder').style.display = 'flex';
+    }
 
     // 戻るボタンの挙動
     const backBtn = document.getElementById("back");
-    const referrer = document.referrer; // 前のURL
-    if(referrer.includes("search.html")) {
-        backBtn.onclick = () => window.location.href = "search.html";
-    } else if(referrer.includes("bookshelf.html")) {
-        backBtn.onclick = () => window.location.href = "bookshelf.html";
-    } else {
-        backBtn.onclick = () => window.location.href = "home.html";
-    }
+    // 実際にはdocument.referrerを使うのがより正確ですが、ここでは便宜的にコメントアウト
+    // const referrer = document.referrer; 
+    // if(referrer.includes("search.html")) {
+    //     backBtn.onclick = () => window.location.href = "search.html";
+    // } else if(referrer.includes("bookshelf.html")) {
+    //     backBtn.onclick = () => window.location.href = "bookshelf.html";
+    // } else {
+    //     backBtn.onclick = () => window.location.href = "home.html";
+    // }
+    backBtn.onclick = () => {
+        // 戻る処理を実装 (例: window.history.back())
+        window.history.back();
+    };
 
     // 借りるボタン
     document.getElementById("borrow").onclick = function() {
-        // lentconf.html に本情報を渡す
+        // lentconf.html に本情報を渡す (元のコード通り)
         const lentUrl = `lentconf.html?title=${encodeURIComponent(params.title)}&author=${encodeURIComponent(params.author)}&publisher=${encodeURIComponent(params.publisher)}&category=${encodeURIComponent(params.category)}&description=${encodeURIComponent(params.description)}&image=${encodeURIComponent(params.image)}`;
         window.location.href = lentUrl;
     };
+    
+    // 貸し出し不可の場合、借りるボタンを非活性化
+    // ※今回は画像再現のため、デフォルトで「貸し出し不可」表示をしますが、
+    //   実際にはデータに応じて表示/ボタン活性を切り替える処理が必要です。
+    // document.getElementById("borrow").disabled = true;
 };
 </script>
 
