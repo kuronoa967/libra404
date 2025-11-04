@@ -1,210 +1,74 @@
-/* リセットと基本設定 */
-body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fff;
-    color: #333;
-}
+@charset "UTF-8";
 
-/* ヘッダーセクション */
-.header {
+body{
+    max-width: 100vw;
+    /* width: 80%; */
+    margin: 0 auto;
+    overflow: hidden;
+} 
+
+.c_hd{
     display: flex;
-    align-items: center;
-    padding: 20px 50px;
-    border-bottom: 1px solid #a2c2e6; 
-    background-color: #a2c2e6; 
-    height: 150px; 
-    box-sizing: border-box;
-    font-size: 14px;
-}
-
-/* ホームリンクとアプリアイコン (左端に固定) */
-.home-link-container {
-    /* 「ホーム」とアイコンを左上に配置 */
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
-.button-icon {
-    width:50px;
-    height: var(--icon-size);
-}
-
-/* ★★★ 検索コンテナの修正点 ★★★ */
-
-/* 検索コンテナ全体: ホームリンクとカテゴリ検索の間のスペースを占有し、中央寄せ・右寄せを制御 */
-.search-container {
-    display: flex;
-    flex-grow: 1; /* ホームリンクの右側の残りのスペースをすべて占有 */
-    align-items: center; 
-    /* 配置のロジック:
-       1. タイトル検索を中央に近づける
-       2. カテゴリ検索を右端に寄せる
-       この配置は、スペースを均等に分配する 'space-between' に似ていますが、
-       タイトル検索を中央に固定するために、margin-left: auto; を組み合わせて使います。
-    */
-    justify-content: flex-end; /* 初期配置を右に寄せ、タイトル検索を左からプッシュ */
-    gap: 10px; /* カテゴリ検索と右端の隙間は不要だが、内部要素間の隙間として残す */
-}
-
-/* タイトル検索グループ (中央に配置) */
-/* flex-grow: 1 のコンテナ内で、マージンを使って中央に押し出す */
-.search-group:nth-child(1) { /* タイトル検索 (1番目の .search-group) */
-    /* タイトル検索を中央に配置するための調整 */
-    margin-right: auto; 
-    margin-left: auto;
-    /* 右端に配置されるカテゴリ検索との間に十分なスペースを確保するため、左マージンを優先 */
-    /* この設定により、flex-grow: 1 のコンテナ内で要素が中央に配置されます */
-    transform: translateX(-50%); /* 中央に寄せすぎないための微調整 */
-}
-
-/* カテゴリ検索グループ (右端に配置) */
-.category-group { 
-    /* 右端に固定するため、特別なマージンは不要 */
-    margin-right: 0;
-}
-
-/* 個々の検索グループの共通スタイル */
-.search-group {
-    display: flex;
-    align-items: center;
-    border: 1px solid #a0a0a0;
-    border-radius: 2px;
-    background-color: #fff;
-    padding: 20px 50px;
-    height: 28px; 
-    flex-shrink: 0; /* スペースが不足しても縮まないように */
-}
-
-.search-group input {
-    border: none;
-    padding: 0 5px;
-    outline: none;
-    font-size: 20px;
-    width: 150px;
-}
-
-.search-group select {
-    border: none;
-    padding: 0 5px;
-    outline: none;
-    font-size: 20px;
-    height: 28px;
-    width: 150px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.search-icon {
-    cursor: pointer;
-    color: #666;
-    font-size: 18px; 
-}
-/* ★★★ 修正点ここまで ★★★ */
-
-
-/* メインコンテンツ */
-.main-content {
-    padding: 20px 20px 0 20px;
-}
-
-/* ヒット件数 (0件ヒット) */
-.hit-count {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 15px; 
-    padding-bottom: 10px;
-    padding-top: 10px;
-    text-align: center; 
-}
-
-/* 検索結果リスト */
-.results-list {
-    max-height: 400px; 
-    overflow-y: auto;
-    padding-right: 15px; 
-    border-right: 1px solid #a0a0a0; 
-}
-
-/* スクロールバーの見た目を再現 (WebKit/Blinkエンジン向け) */
-.results-list::-webkit-scrollbar {
-    width: 10px; 
-}
-.results-list::-webkit-scrollbar-thumb {
-    background-color: #b0b0b0; 
-    border-radius: 5px;
-    border: 2px solid #fff; 
-}
-.results-list::-webkit-scrollbar-track {
-    background: #f0f0f0; 
-}
-
-
-/* 個々の書籍アイテム */
-.book-item {
-    border-bottom: 1px solid #d0d0d0;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    padding-right: 5px;
-}
-
-.book-detail-link {
-    display: flex;
-    text-decoration: none;
-    color: inherit;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-/* 本の画像の枠 */
-.book-image {
-    width: 100px;
-    height: 140px;
-    object-fit: cover;
-    border: 1px solid #333;
-}
-
-/* 書籍情報と貸出状況のコンテナ */
-.book-info-container {
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1;
-    height: 140px;
+    align-items: center;
+    background-color: rgb(55, 205, 255);
+    border-bottom: 0.5px solid #000;
+    padding:25px 30px;
 }
 
-/* タイトルとあらすじのテキスト */
-.book-details {
-    padding-top: 5px;
+.c_hd_left{
+    display: flex;
 }
 
-.book-title-label, .book-description-label {
-    font-size: 1em;
-    margin: 0;
-    line-height: 1.5;
-    color: #000;
+.c_hd_ttl{
+    margin-left: 15px;
 }
 
-/* 貸出状況のスタイル（右下に配置） */
-.book-availability-status {
-    font-weight: bold;
-    text-align: right;
-    align-self: flex-end; 
-    padding-right: 10px;
-    margin-top: auto;
+.search{
+    height: 30px;
+    width: 15vw;
 }
 
-/* 貸出可 (緑色) */
-.availability-available {
-    color: #006400; 
-    font-size: 14px;
+.select{
+    height: 30px;
+    width: 15vw;
 }
 
-/* 貸出不可 (赤色) */
-.availability-unavailable {
-    color: #cc0000; 
-    font-size: 14px;
+.c_main{
+    width: 80%;
+    margin: 0 auto;
+    height: calc(100vh - 120px);
+    overflow-y: scroll;
+}
+
+.count_hd{
+    text-align: center;
+    border-bottom: 0.5px solid #000;
+}
+
+.count_body{
+    padding: 30px 0;
+    border-bottom: 0.5px solid #000;
+}
+
+.count_cnt{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.count_cnt img{
+    width: 15vw;
+}
+
+.book_ttl{
+    display: flex;
+}
+
+.book_about{
+    display: flex;
+}
+
+.book_about_text{
+    margin-top: 1.35em;
 }
