@@ -10,23 +10,25 @@
 
 <body>
 
+  <!-- =========================
+       ヘッダー
+  ========================== -->
   <header class="c_hd">
     <div class="c_hd_left">
       <a href="home.html">
         <img src="../static/images/icon.png" alt="ホームアイコン" class="home-icon">
       </a>
       <div class="c_hd_ttl">
-        <input type="search" class="search" placeholder="タイトルを検索...">
-        <!-- タイトル検索の虫眼鏡画像 -->
-        <button class="search-btn">
+        <input type="search" id="titleSearch" class="search" placeholder="タイトルを検索...">
+        <button class="search-btn" onclick="searchBooks()">
           <img src="../static/images/Magnifying glass.png" alt="検索" class="search-icon-img">
         </button>
       </div>
     </div>
 
     <div class="c_hd_right">
-      <select class="select">
-        <option value="検索窓">カテゴリー検索</option>
+      <select id="categorySelect" class="select">
+        <option value="">カテゴリー検索</option>
         <option value="ファンタジー">ファンタジー</option>
         <option value="ミステリー">ミステリー</option>
         <option value="ノンフィクション">ノンフィクション</option>
@@ -38,14 +40,15 @@
         <option value="えほん">えほん</option>
         <option value="自己啓発本">自己啓発本</option>
       </select>
-
-      <!-- カテゴリ検索の虫眼鏡画像（リロードボタン扱い） -->
-      <button class="reload-btn" onclick="location.reload();">
+      <button class="reload-btn" onclick="reloadPage()">
         <img src="../static/images/Magnifying glass.png" alt="再読み込み" class="reload-icon-img">
       </button>
     </div>
   </header>
 
+  <!-- =========================
+       メインコンテンツ
+  ========================== -->
   <main class="c_main">
     <div class="u_inner">
       <section class="count">
@@ -75,7 +78,7 @@
                 </div>
               </div>
               <div class="book_lend">
-                <h2 class="book_lend_ttl">貸出可</h2>
+                <h2 class="book_lend_ttl available">貸出可</h2>
               </div>
             </a>
           </div>
@@ -103,7 +106,7 @@
                 </div>
               </div>
               <div class="book_lend">
-                <h2 class="book_lend_ttl">貸出可</h2>
+                <h2 class="book_lend_ttl unavailable">貸出不可</h2>
               </div>
             </a>
           </div>
@@ -131,7 +134,7 @@
                 </div>
               </div>
               <div class="book_lend">
-                <h2 class="book_lend_ttl">貸出可</h2>
+                <h2 class="book_lend_ttl available">貸出可</h2>
               </div>
             </a>
           </div>
@@ -141,10 +144,35 @@
     </div>
   </main>
 
+  <!-- =========================
+       JavaScript（最低限）
+  ========================== -->
   <script>
-    // 検索結果数を自動カウント
-    const books = document.querySelectorAll(".count_body");
-    document.getElementById("result-count").textContent = books.length;
+    // 件数をカウント
+    document.getElementById("result-count").textContent =
+      document.querySelectorAll(".count_body").length;
+
+    // タイトル検索
+    function searchBooks() {
+      const keyword = document.getElementById("titleSearch").value.trim();
+      const books = document.querySelectorAll(".count_body");
+      let count = 0;
+      books.forEach(book => {
+        const title = book.querySelector(".book_ttl h2:nth-of-type(2)").textContent;
+        if (title.includes(keyword) || keyword === "") {
+          book.style.display = "";
+          count++;
+        } else {
+          book.style.display = "none";
+        }
+      });
+      document.getElementById("result-count").textContent = count;
+    }
+
+    // 再読み込み
+    function reloadPage() {
+      location.reload();
+    }
   </script>
 
 </body>
