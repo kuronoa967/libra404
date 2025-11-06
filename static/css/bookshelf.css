@@ -1,4 +1,4 @@
-/* Google Material Symbolsの設定（再追加） */
+/* Google Material Symbolsの設定 */
 .material-symbols-outlined {
     font-variation-settings:
         'FILL' 1,
@@ -40,21 +40,22 @@ body {
     1. ヘッダーとコントロール
     ================== */
 .bookshelf-header {
-    /* Flexboxで3つの主要エリア (ホーム, 中央タイトル, コントロール) を配置 */
+    /* 3つの要素を横並びにして、均等にスペースを確保 */
     display: flex;
-    align-items: flex-start; /* 上端揃え */
+    align-items: flex-start;
     justify-content: space-between;
-    position: relative;
     padding-bottom: 10px;
     margin-bottom: 5px;
 }
 
 /* 🏠 左上のホームリンク */
 .home-link-container {
-    /* ヘッダーの左端に固定 */
-    width: 80px; /* 幅を確保 */
+    /* 左側の幅を確保 */
+    width: 80px; 
     text-align: center;
     padding-top: 5px;
+    /* ページのタイトルと重ならないように、固定幅と flex-shrink: 0 を設定 */
+    flex-shrink: 0;
 }
 
 .home-link {
@@ -74,10 +75,10 @@ body {
 
 /* 中央のタイトルと件数 */
 .header-center {
-    /* ヘッダーの中央に配置し、左右にスペースを作る */
+    /* 中央に配置し、残りのスペースを柔軟に使う */
     text-align: center;
-    flex-grow: 1; /* 残りのスペースを埋める */
-    /* ホームリンクやコントロールとの重なりを防ぐため、左右にマージンを設定 */
+    flex-grow: 1; 
+    /* 左右の要素との干渉を防ぐため、マージンを確保 */
     margin: 0 10px;
 }
 
@@ -95,12 +96,14 @@ body {
 
 /* 右側のコントロール（ドロップダウンとフィルターアイコン） */
 .header-controls {
-    /* ヘッダーの右端に固定 */
-    width: 150px; /* 幅を確保 */
+    /* 右側の幅を確保 */
+    min-width: 150px; 
     display: flex;
     justify-content: flex-end; /* 右寄せ */
-    align-items: flex-start; /* 上端揃え */
+    align-items: flex-start;
     padding-top: 10px;
+    /* ページのタイトルと重ならないように、固定幅と flex-shrink: 0 を設定 */
+    flex-shrink: 0;
 }
 
 .filter-group {
@@ -194,7 +197,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    flex-shrink: 0; /* 縮まないように設定 */
+    flex-shrink: 0;
 }
 
 .placeholder-text {
