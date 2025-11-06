@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>検索画面</title>
   <link rel="stylesheet" href="../static/css/search.css">
-  <script src="https://kit.fontawesome.com/4a6b366509.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -18,7 +17,9 @@
       </a>
       <div class="c_hd_ttl">
         <input type="search" class="search" placeholder="タイトルを検索...">
-        <i class="fas fa-search search-icon"></i>
+        <button class="search-btn">
+          <img src="../static/images/Magnifying glass.png" alt="検索" class="search-icon-img">
+        </button>
       </div>
     </div>
     <div class="c_hd_right">
@@ -35,6 +36,9 @@
         <option value="えほん">えほん</option>
         <option value="自己啓発本">自己啓発本</option>
       </select>
+      <button class="reload-btn">
+        <img src="../static/images/Magnifying glass.png" alt="再読み込み" class="reload-icon-img">
+      </button>
     </div>
   </header>
 
