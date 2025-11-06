@@ -21,9 +21,9 @@
                 </a>
             </div>
 
-            <div class="title-area">
+            <div class="header-center">
                 <h1 class="page-title">本棚</h1>
-                <p class="count-display">5件表示</p>
+                <p class="count-display" th:text="${bookList != null ? #lists.size(bookList) + '件表示' : '0件表示'}">5件表示</p>
             </div>
 
             <div class="header-controls">
