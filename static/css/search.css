@@ -1,102 +1,134 @@
+/* ==========================
+   全体設定
+========================== */
 :root {
   --bg: #fff;
-  --accent: #b0c4de;
-  --text: #333;
+  --header-bg: #b0c4de;
+  --text: #000;
+  --accent: #f0f0f0;
+  --radius: 12px;
   font-family: "Noto Sans JP", sans-serif;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
 }
 
-/* ===== ヘッダー ===== */
+/* ==========================
+   ヘッダー
+========================== */
 .c_hd {
+  background-color: var(--header-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--accent);
   padding: 10px 20px;
 }
 
-.c_hd_left, .c_hd_right {
+.c_hd_left {
   display: flex;
   align-items: center;
+  gap: 15px;
+}
+
+.c_hd_right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .home-icon {
   width: 50px;
   height: 50px;
-  margin-right: 20px;
+  border-radius: 50%;
 }
 
 .c_hd_ttl {
   display: flex;
   align-items: center;
-  gap: 6px;
+  background-color: white;
+  border-radius: var(--radius);
+  padding: 5px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search {
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  width: 220px;
+  border: none;
+  outline: none;
+  padding: 8px;
+  font-size: 14px;
+  width: 200px;
 }
 
-.search-btn {
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 5px;
+.icon-btn {
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: background 0.2s;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
 }
 
-.search-btn:hover {
-  background: #f0f0f0;
+.icon-btn:hover {
+  color: #000;
+  transform: scale(1.1);
+  transition: 0.2s;
 }
 
-.search-btn-img {
-  width: 20px;
-  height: 20px;
-}
-
-.search-btn.small {
-  margin-left: 8px;
+.search-icon {
+  font-size: 18px;
 }
 
 .select {
   padding: 8px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   border: 1px solid #ccc;
-  margin-left: 8px;
+  font-size: 14px;
+  outline: none;
 }
 
-/* ===== 検索結果 ===== */
-.u_inner {
+/* ==========================
+   メイン
+========================== */
+.c_main {
   padding: 20px;
 }
 
+.u_inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* 件数 */
 .count_hd_ttl {
-  font-size: 22px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+/* ==========================
+   検索結果カード
+========================== */
+.count_body {
   margin-bottom: 20px;
 }
 
-.count_body {
-  margin-bottom: 16px;
+.count_wrap {
+  background-color: var(--accent);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: background-color 0.2s ease;
 }
 
-.count_wrap {
-  background: #fafafa;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  transition: 0.3s;
+.count_wrap:hover {
+  background-color: #e6ecf2;
 }
 
 .count_cnt {
@@ -105,26 +137,82 @@ body {
   text-decoration: none;
   color: var(--text);
   padding: 15px;
-  transition: background 0.3s;
-}
-
-.count_cnt:hover {
-  background: #e8f0ff;
+  gap: 20px;
 }
 
 .count_cnt img {
-  width: 100px;
-  height: 140px;
-  object-fit: cover;
-  margin-right: 15px;
+  width: 120px;
+  height: auto;
   border-radius: 8px;
+  object-fit: cover;
 }
 
-.book h2, .book h3, .book p {
-  margin: 4px 0;
+/* ==========================
+   本の詳細部分
+========================== */
+.book {
+  flex: 1;
+}
+
+.book_ttl h2 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.book_about h3 {
+  margin: 10px 0 5px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.book_about p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text);
+  white-space: pre-line;
+}
+
+/* ==========================
+   貸出情報
+========================== */
+.book_lend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
 }
 
 .book_lend_ttl {
-  color: green;
+  color: #228b22;
   font-weight: bold;
+}
+
+/* ==========================
+   レスポンシブ対応
+========================== */
+@media (max-width: 700px) {
+  .c_hd {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .c_hd_ttl {
+    width: 100%;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .count_cnt {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .book {
+    width: 100%;
+  }
 }
