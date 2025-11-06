@@ -1,23 +1,22 @@
 /* ==================
-    1. ヘッダーとコントロール
+    ヘッダー（常に中央表示）
     ================== */
 .bookshelf-header {
+    position: relative;
     display: flex;
-    flex-wrap: wrap; /* 横幅が狭いときに自動で折り返す */
     align-items: center;
     justify-content: space-between;
-    gap: 10px; /* 各要素の間に余白をつける */
-    padding-bottom: 10px;
-    margin-bottom: 5px;
+    height: 70px; /* ヘッダーの高さ調整 */
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--border-color);
 }
 
-/* 🏠 左上のホームリンク */
+/* 左側（ホーム） */
 .home-link-container {
-    width: auto;
-    min-width: 70px;
+    flex: 0 0 auto;
     text-align: center;
-    padding-top: 5px;
-    flex-shrink: 0;
+    z-index: 2; /* タイトルより前に出るように */
 }
 
 .home-link {
@@ -35,50 +34,73 @@
     margin: 0;
 }
 
-/* 中央のタイトルと件数 */
+/* 中央タイトル（絶対センタリング） */
 .header-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    flex-grow: 1;
-    margin: 0 10px;
-    min-width: 200px;
+    pointer-events: none; /* クリックをブロックしないように */
+    width: calc(100% - 240px); /* 左右の余白分を除外（調整可） */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .page-title {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: bold;
-    margin: 0 0 5px 0;
+    margin: 0 0 3px 0;
     line-height: 1.2;
 }
 
 .count-display {
     font-size: 14px;
     margin: 0;
+    color: var(--text-color);
 }
 
-/* 右側のコントロール */
+/* 右側（フィルター） */
 .header-controls {
+    flex: 0 0 auto;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    flex-shrink: 0;
-    gap: 5px;
-    min-width: 150px;
-    padding-top: 5px;
+    gap: 6px;
+    z-index: 2;
 }
 
-/* レスポンシブ対応：狭い画面で縦並びに */
+.filter-dropdown {
+    padding: 5px 10px;
+    border: 1px solid var(--border-color);
+    font-size: 15px;
+    background: #fff;
+}
+
+.filter-button {
+    border: 1px solid var(--border-color);
+    background: #fff;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.filter-icon {
+    font-size: 20px;
+    color: #000;
+}
+
+/* スマホ対応：狭い画面では縦並びに */
 @media screen and (max-width: 700px) {
     .bookshelf-header {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .home-link-container,
-    .header-controls {
-        order: 1; /* 上下の順を制御 */
+        height: auto;
+        gap: 8px;
+        padding: 10px;
     }
     .header-center {
-        order: 0; /* タイトルを中央最上部に */
-        margin-bottom: 10px;
+        position: static;
+        transform: none;
+        width: auto;
+        pointer-events: auto;
     }
 }
