@@ -1,12 +1,12 @@
 /* ==================
-    ヘッダー（常に中央表示）
-    ================== */
+   ヘッダー：中央固定＋左右固定
+   ================== */
 .bookshelf-header {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px; /* ヘッダーの高さ調整 */
+    height: 70px;
     padding: 0 20px;
     box-sizing: border-box;
     border-bottom: 1px solid var(--border-color);
@@ -16,7 +16,11 @@
 .home-link-container {
     flex: 0 0 auto;
     text-align: center;
-    z-index: 2; /* タイトルより前に出るように */
+    z-index: 2;
+    position: absolute;
+    left: 20px; /* 画面左固定 */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .home-link {
@@ -34,15 +38,16 @@
     margin: 0;
 }
 
-/* 中央タイトル（絶対センタリング） */
+/* 中央タイトル（常に真ん中） */
 .header-center {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    pointer-events: none; /* クリックをブロックしないように */
-    width: calc(100% - 240px); /* 左右の余白分を除外（調整可） */
+    pointer-events: none;
+    width: 100%;
+    max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -61,9 +66,12 @@
     color: var(--text-color);
 }
 
-/* 右側（フィルター） */
+/* 右側（プルダウン＋フィルター） */
 .header-controls {
-    flex: 0 0 auto;
+    position: absolute;
+    right: 20px; /* 画面右固定 */
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     gap: 6px;
@@ -89,18 +97,26 @@
     color: #000;
 }
 
-/* スマホ対応：狭い画面では縦並びに */
+/* スマホ対応（700px以下でも左右固定） */
 @media screen and (max-width: 700px) {
     .bookshelf-header {
-        flex-direction: column;
-        height: auto;
-        gap: 8px;
-        padding: 10px;
+        height: 60px;
+        padding: 0 10px;
     }
-    .header-center {
-        position: static;
-        transform: none;
-        width: auto;
-        pointer-events: auto;
+
+    .home-link-container {
+        left: 10px;
+    }
+
+    .header-controls {
+        right: 10px;
+    }
+
+    .page-title {
+        font-size: 22px;
+    }
+
+    .count-display {
+        font-size: 12px;
     }
 }
