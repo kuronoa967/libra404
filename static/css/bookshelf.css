@@ -1,60 +1,22 @@
-/* Google Material Symbolsの設定 */
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 1,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-}
-
-:root {
-    --text-color: #000;
-    --border-color: #000;
-    --icon-size: 40px;
-    --list-width: 650px; /* 全体のリスト幅を調整 */
-}
-
-body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fff;
-    color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-}
-
-.container {
-    width: var(--list-width);
-    margin-top: 30px;
-    border: 1px solid var(--border-color); /* 全体を囲む枠線 */
-    padding: 20px;
-    box-sizing: border-box;
-    position: relative;
-    min-height: 500px;
-}
-
 /* ==================
     1. ヘッダーとコントロール
     ================== */
 .bookshelf-header {
-    /* 3つの要素を横並びにして、均等にスペースを確保 */
     display: flex;
-    align-items: flex-start;
+    flex-wrap: wrap; /* 横幅が狭いときに自動で折り返す */
+    align-items: center;
     justify-content: space-between;
+    gap: 10px; /* 各要素の間に余白をつける */
     padding-bottom: 10px;
     margin-bottom: 5px;
 }
 
 /* 🏠 左上のホームリンク */
 .home-link-container {
-    /* 左側の幅を確保 */
-    width: 80px; 
+    width: auto;
+    min-width: 70px;
     text-align: center;
     padding-top: 5px;
-    /* ページのタイトルと重ならないように、固定幅と flex-shrink: 0 を設定 */
     flex-shrink: 0;
 }
 
@@ -75,156 +37,48 @@ body {
 
 /* 中央のタイトルと件数 */
 .header-center {
-    /* 中央に配置し、残りのスペースを柔軟に使う */
     text-align: center;
-    flex-grow: 1; 
-    /* 左右の要素との干渉を防ぐため、マージンを確保 */
+    flex-grow: 1;
     margin: 0 10px;
+    min-width: 200px;
 }
 
 .page-title {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: bold;
     margin: 0 0 5px 0;
+    line-height: 1.2;
 }
 
 .count-display {
     font-size: 14px;
     margin: 0;
-    color: var(--text-color);
 }
 
-/* 右側のコントロール（ドロップダウンとフィルターアイコン） */
+/* 右側のコントロール */
 .header-controls {
-    /* 右側の幅を確保 */
-    min-width: 150px; 
     display: flex;
-    justify-content: flex-end; /* 右寄せ */
-    align-items: flex-start;
-    padding-top: 10px;
-    /* ページのタイトルと重ならないように、固定幅と flex-shrink: 0 を設定 */
+    justify-content: flex-end;
+    align-items: center;
     flex-shrink: 0;
+    gap: 5px;
+    min-width: 150px;
+    padding-top: 5px;
 }
 
-.filter-group {
-    display: flex;
-    align-items: center;
-    gap: 0;
-}
-
-/* ドロップダウン */
-.filter-dropdown {
-    padding: 5px 10px;
-    border: 1px solid var(--border-color);
-    border-right: none;
-    border-radius: 0;
-    font-size: 16px;
-    background: white;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: auto;
-}
-
-/* フィルターボタン（アイコン） */
-.filter-button {
-    border: 1px solid var(--border-color);
-    background: white;
-    padding: 4px;
-    line-height: 1;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-}
-
-.filter-icon {
-    font-size: 20px;
-    color: #000;
-}
-
-/* ヘッダーとリストを区切る線 */
-.separator-line {
-    border: 0;
-    border-top: 1px solid var(--border-color);
-    margin: 10px 0 20px 0;
-    width: 100%;
-}
-
-/* ==================
-    2. リスト本体 (本の情報)
-    ================== */
-
-.bookshelf-main {
-    position: relative;
-    padding-right: 15px;
-}
-
-.book-list-wrapper {
-    max-height: 350px;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #f1f1f1;
-    padding-right: 15px;
-}
-
-/* Webkit系ブラウザのスクロールバーのスタイル */
-.book-list-wrapper::-webkit-scrollbar {
-    width: 12px;
-}
-.book-list-wrapper::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-.book-list-wrapper::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 6px;
-}
-
-.book-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 15px 0;
-}
-
-/* 本の画像エリア */
-.book-cover {
-    width: 100px;
-    height: 140px;
-    border: 1px solid var(--border-color);
-    margin-right: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-shrink: 0;
-}
-
-.placeholder-text {
-    font-size: 14px;
-    color: #555;
-}
-
-/* 本の詳細情報 */
-.book-details {
-    flex-grow: 1;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.book-details p {
-    margin: 5px 0;
-}
-
-/* リストアイテム間の区切り線 */
-.item-separator {
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 0;
-}
-
-/* リストが空の場合の表示 */
-.no-books {
-    text-align: center;
-    padding: 30px;
+/* レスポンシブ対応：狭い画面で縦並びに */
+@media screen and (max-width: 700px) {
+    .bookshelf-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .home-link-container,
+    .header-controls {
+        order: 1; /* 上下の順を制御 */
+    }
+    .header-center {
+        order: 0; /* タイトルを中央最上部に */
+        margin-bottom: 10px;
+    }
 }
