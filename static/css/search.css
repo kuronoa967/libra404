@@ -1,125 +1,81 @@
-:root {
-  --main-color: rgb(55, 205, 255);
-  --bg-color: #f9fbfd;
-  --text-color: #333;
-  --card-bg: #fff;
-  --shadow: 0 2px 6px rgba(0,0,0,0.1);
-  --radius: 10px;
-  font-family: "Noto Sans JP", "Rounded Mplus 1c", sans-serif;
-}
+@charset "UTF-8";
 
-/* ページ全体 */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-/* ===============================
-   ヘッダー部分
-================================ */
-.c_hd {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--main-color);
-  padding: 20px 40px;
-  position: relative;
-}
-
-/* 左のホームアイコン */
-.c_hd_left {
-  display: flex;
-  align-items: center;
-}
+body{
+    max-width: 100vw;
+    /* width: 80%; */
+    margin: 0 auto;
+    overflow: hidden;
+} 
 
 .home-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+    width: 40px;   /* アイコンの横幅 */
+    height: 40px;  /* アイコンの高さ */
+    object-fit: contain; /* 縦横比を維持 */
 }
 
-/* タイトル検索を中央に配置 */
-.c_hd_center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+
+.c_hd{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(55, 205, 255);
+    border-bottom: 0.5px solid #000;
+    padding:25px 30px;
 }
 
-.search {
-  width: 300px;
-  height: 36px;
-  border: none;
-  border-radius: 20px;
-  padding: 0 15px;
-  font-size: 15px;
-  outline: none;
-  box-shadow: var(--shadow);
+.c_hd_left{
+    display: flex;
 }
 
-/* 右側の余白用（必要に応じて追加ボタンなど配置可能） */
-.c_hd_right {
-  width: 40px;
+.c_hd_ttl{
+    margin-left: 15px;
 }
 
-/* ===============================
-   検索結果・本カード一覧
-================================ */
-.book-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  padding: 30px;
+.search{
+    height: 30px;
+    width: 15vw;
 }
 
-/* 各カード */
-.book-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  padding: 10px;
-  box-shadow: var(--shadow);
-  transition: transform 0.2s ease;
+.select{
+    height: 30px;
+    width: 15vw;
 }
 
-.book-card:hover {
-  transform: translateY(-4px);
+.c_main{
+    width: 80%;
+    margin: 0 auto;
+    height: calc(100vh - 120px);
+    overflow-y: scroll;
 }
 
-/* ✅ 画像をトリミングして高さを統一 */
-.book-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 6px;
-  background-color: #f2f2f2;
+.count_hd{
+    text-align: center;
+    border-bottom: 0.5px solid #000;
 }
 
-/* タイトルなど */
-.book-info {
-  margin-top: 10px;
-  text-align: center;
+.count_body{
+    padding: 30px 0;
+    border-bottom: 0.5px solid #000;
 }
 
-.book-info h3 {
-  font-size: 16px;
-  margin: 6px 0 2px;
+.count_cnt{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.book-info p {
-  font-size: 14px;
-  color: #555;
+.count_cnt img{
+    width: 15vw;
 }
 
-/* ===============================
-   フッター（任意）
-================================ */
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #888;
-  font-size: 14px;
+.book_ttl{
+    display: flex;
+}
+
+.book_about{
+    display: flex;
+}
+
+.book_about_text{
+    margin-top: 1.35em;
 }
