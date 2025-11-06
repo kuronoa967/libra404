@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +9,21 @@
 </head>
 
 <body>
-
   <header class="c_hd">
     <div class="c_hd_left">
       <a href="home.html">
         <img src="../static/images/icon.png" alt="ホームアイコン" class="home-icon">
       </a>
       <div class="c_hd_ttl">
-        <input type="search" class="search" placeholder="タイトルを検索...">
-        <i class="fas fa-search search-icon"></i>
+        <input id="searchInput" type="search" class="search" placeholder="タイトルを検索...">
+        <button id="searchBtn" class="search-btn">
+          <img src="../static/images/search-icon.png" alt="検索" class="search-btn-img">
+        </button>
       </div>
     </div>
     <div class="c_hd_right">
-      <select class="select">
-        <option value="検索窓">カテゴリー検索</option>
+      <select id="categorySelect" class="select">
+        <option value="">カテゴリー検索</option>
         <option value="ファンタジー">ファンタジー</option>
         <option value="ミステリー">ミステリー</option>
         <option value="ノンフィクション">ノンフィクション</option>
@@ -35,6 +35,9 @@
         <option value="えほん">えほん</option>
         <option value="自己啓発本">自己啓発本</option>
       </select>
+      <button id="reloadBtn" class="search-btn small">
+        <img src="../static/images/search-icon.png" alt="再読み込み" class="search-btn-img">
+      </button>
     </div>
   </header>
 
@@ -42,102 +45,112 @@
     <div class="u_inner">
       <section class="count">
         <header class="count_hd">
-          <h1 class="count_hd_ttl"><span id="result-count">0</span> 件ヒット</h1>
+          <h1 id="resultCount" class="count_hd_ttl">検索結果 3件ヒット</h1>
         </header>
 
-        <!-- 本① -->
-        <div class="count_body">
-          <div class="count_wrap">
-            <a href="bdetail.html?id=1" class="count_cnt">
-              <img src="../static/images/magazine_1.jpg" alt="ROCKIN'ON JAPAN 2025年2月号">
-              <div class="book">
-                <div class="book_ttl">
-                  <h2>タイトル：</h2>
-                  <h2>ROCKIN'ON JAPAN 2025年2月号</h2>
-                </div>
-                <div class="book_about">
-                  <h3>あらすじ：</h3>
-                  <p>
-                    THE ORAL CIGARETTES<br>
-                    今こそ、ロックバンドシーンを背負う──<br>
-                    「PARASITE DEJAVU」、そして最高傑作『AlterGeist0000』。<br>
-                    今の想いをすべて語る、初の表紙巻頭特集！<br>
-                    山中拓也・2万字インタビューも
-                  </p>
-                </div>
-              </div>
-              <div class="book_lend">
-                <h2 class="book_lend_ttl">貸出可</h2>
-              </div>
-            </a>
-          </div>
-        </div>
+        <div id="bookList">
 
-        <!-- 本② -->
-        <div class="count_body">
-          <div class="count_wrap">
-            <a href="bdetail.html?id=2" class="count_cnt">
-              <img src="../static/images/はりぽた.jpg" alt="ハリーポッター 賢者の石">
-              <div class="book">
-                <div class="book_ttl">
-                  <h2>タイトル：</h2>
-                  <h2>ハリーポッター　賢者の石</h2>
+          <!-- 本① -->
+          <div class="count_body">
+            <div class="count_wrap">
+              <a href="bdetail.html?id=1" class="count_cnt">
+                <img src="../static/images/magazine_1.jpg" alt="ROCKIN'ON JAPAN 2025年2月号">
+                <div class="book">
+                  <div class="book_ttl">
+                    <h2>タイトル：</h2>
+                    <h2>ROCKIN'ON JAPAN 2025年2月号</h2>
+                  </div>
+                  <div class="book_about">
+                    <h3>あらすじ：</h3>
+                    <p>
+                      THE ORAL CIGARETTES<br>
+                      今こそ、ロックバンドシーンを背負う──<br>
+                      「PARASITE DEJAVU」、そして最高傑作『AlterGeist0000』。<br>
+                      今の想いをすべて語る、初の表紙巻頭特集！<br>
+                      山中拓也・2万字インタビューも
+                    </p>
+                  </div>
                 </div>
-                <div class="book_about">
-                  <h3>あらすじ：</h3>
-                  <p>
-                    J.K.ローリング<br>
-                    ハリー、おまえさんは魔法使いだ──<br>
-                    いじわるな親戚ダーズリー家で暮らしていたハリー。<br>
-                    11歳の誕生日に、ホグワーツ魔法魔術学校から<br>
-                    入学許可証が届く──！
-                  </p>
+                <div class="book_lend">
+                  <h2 class="book_lend_ttl">貸出可</h2>
                 </div>
-              </div>
-              <div class="book_lend">
-                <h2 class="book_lend_ttl">貸出可</h2>
-              </div>
-            </a>
+              </a>
+            </div>
           </div>
-        </div>
 
-        <!-- 本③ -->
-        <div class="count_body">
-          <div class="count_wrap">
-            <a href="bdetail.html?id=3" class="count_cnt">
-              <img src="../static/images/ゾロリ.jpg" alt="かいけつゾロリの地獄旅行">
-              <div class="book">
-                <div class="book_ttl">
-                  <h2>タイトル：</h2>
-                  <h2>かいけつゾロリの地獄旅行</h2>
+          <!-- 本② -->
+          <div class="count_body">
+            <div class="count_wrap">
+              <a href="bdetail.html?id=2" class="count_cnt">
+                <img src="../static/images/はりぽた.jpg" alt="ハリーポッター 賢者の石">
+                <div class="book">
+                  <div class="book_ttl">
+                    <h2>タイトル：</h2>
+                    <h2>ハリーポッター　賢者の石</h2>
+                  </div>
+                  <div class="book_about">
+                    <h3>あらすじ：</h3>
+                    <p>
+                      J.K.ローリング<br>
+                      ハリー、おまえさんは魔法使いだ──<br>
+                      いじわるな親戚ダーズリー家で暮らしていたハリー。<br>
+                      11歳の誕生日に、ホグワーツ魔法魔術学校から<br>
+                      入学許可証が届く──！
+                    </p>
+                  </div>
                 </div>
-                <div class="book_about">
-                  <h3>あらすじ：</h3>
-                  <p>
-                    原 ゆたか<br>
-                    なつかしいあのキツネ！<br>
-                    「かいけつゾロリのてんごくとじごく」の続編。<br>
-                    7つの地獄をクリアすれば生き返れる！？<br>
-                    舌抜き地獄・血の池地獄などゾロリ達の冒険が再び！
-                  </p>
+                <div class="book_lend">
+                  <h2 class="book_lend_ttl">貸出可</h2>
                 </div>
-              </div>
-              <div class="book_lend">
-                <h2 class="book_lend_ttl">貸出可</h2>
-              </div>
-            </a>
+              </a>
+            </div>
           </div>
-        </div>
 
+          <!-- 本③ -->
+          <div class="count_body">
+            <div class="count_wrap">
+              <a href="bdetail.html?id=3" class="count_cnt">
+                <img src="../static/images/ゾロリ.jpg" alt="かいけつゾロリの地獄旅行">
+                <div class="book">
+                  <div class="book_ttl">
+                    <h2>タイトル：</h2>
+                    <h2>かいけつゾロリの地獄旅行</h2>
+                  </div>
+                  <div class="book_about">
+                    <h3>あらすじ：</h3>
+                    <p>
+                      原 ゆたか<br>
+                      なつかしいあのキツネ！<br>
+                      「かいけつゾロリのてんごくとじごく」の続編。<br>
+                      7つの地獄をクリアすれば生き返れる！？<br>
+                      舌抜き地獄・血の池地獄などゾロリ達の冒険が再び！
+                    </p>
+                  </div>
+                </div>
+                <div class="book_lend">
+                  <h2 class="book_lend_ttl">貸出可</h2>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
       </section>
     </div>
   </main>
 
   <script>
-    // 検索結果数を自動カウント
-    const books = document.querySelectorAll(".count_body");
-    document.getElementById("result-count").textContent = books.length;
-  </script>
+    document.getElementById("searchBtn").addEventListener("click", () => {
+      const keyword = document.getElementById("searchInput").value.trim();
+      const category = document.getElementById("categorySelect").value;
 
+      alert(`検索実行：キーワード「${keyword || "なし"}」、カテゴリー「${category || "なし"}」`);
+      // 🔸ここにDB検索処理を追加（例：fetchでローカルAPI呼び出し）
+    });
+
+    document.getElementById("reloadBtn").addEventListener("click", () => {
+      location.reload();
+    });
+  </script>
 </body>
 </html>
