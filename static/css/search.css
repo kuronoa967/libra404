@@ -1,176 +1,130 @@
-/* =========================
-   全体設定
-========================= */
-body {
+:root {
+  --bg: #fff;
+  --accent: #b0c4de;
+  --text: #333;
   font-family: "Noto Sans JP", sans-serif;
-  margin: 0;
-  background: #fff7f9;
-  color: #333;
 }
 
-/* =========================
-   ヘッダー
-========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===== ヘッダー ===== */
 .c_hd {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #b0c4de; /* ← ヘッダーの色を変更 */
+  background: var(--accent);
   padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.c_hd_left {
+.c_hd_left, .c_hd_right {
   display: flex;
   align-items: center;
 }
 
 .home-icon {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
 }
 
 .c_hd_ttl {
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .search {
-  padding: 8px 32px 8px 10px;
-  border-radius: 20px;
+  padding: 8px 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  outline: none;
+  width: 220px;
 }
 
-.search:focus {
-  border-color: #888;
+.search-btn {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.search-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #555;
+.search-btn:hover {
+  background: #f0f0f0;
 }
 
-.c_hd_right {
-  display: flex;
-  align-items: center;
+.search-btn-img {
+  width: 20px;
+  height: 20px;
+}
+
+.search-btn.small {
+  margin-left: 8px;
 }
 
 .select {
   padding: 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  outline: none;
+  margin-left: 8px;
 }
 
-/* =========================
-   メインコンテンツ
-========================= */
+/* ===== 検索結果 ===== */
 .u_inner {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 0 10px;
+  padding: 20px;
 }
 
 .count_hd_ttl {
-  font-size: 1.4em;
-  font-weight: bold;
-  color: #444;
-  border-bottom: 2px solid #ffd1dc;
-  display: inline-block;
-  padding-bottom: 5px;
+  font-size: 22px;
+  margin-bottom: 20px;
 }
 
 .count_body {
-  margin-top: 20px;
+  margin-bottom: 16px;
 }
 
-/* =========================
-   本のリスト部分
-========================= */
 .count_wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 
-/* リンク全体をカード化 */
 .count_cnt {
   display: flex;
-  gap: 20px;
-  text-decoration: none;   /* 下線を消す */
-  color: black;            /* 青文字を黒にする */
-  background: white;
-  border-radius: 12px;
+  align-items: flex-start;
+  text-decoration: none;
+  color: var(--text);
   padding: 15px;
-  transition: background 0.3s, transform 0.2s;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s;
 }
 
-/* カーソルを当てたとき */
 .count_cnt:hover {
-  background: #f0f8ff;
-  transform: translateY(-3px);
+  background: #e8f0ff;
 }
 
-/* 画像部分 */
 .count_cnt img {
-  width: 150px;
-  height: 200px;
+  width: 100px;
+  height: 140px;
   object-fit: cover;
-  border-radius: 10px;
+  margin-right: 15px;
+  border-radius: 8px;
 }
 
-/* 本情報部分 */
-.book {
-  flex: 1;
-}
-
-.book_ttl h2,
-.book_about h3 {
-  margin: 0;
-}
-
-.book_about p {
-  margin: 5px 0 0 0;
-  line-height: 1.6;
-}
-
-/* 貸出可ラベル */
-.book_lend {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.book h2, .book h3, .book p {
+  margin: 4px 0;
 }
 
 .book_lend_ttl {
-  color: #008000;
+  color: green;
   font-weight: bold;
-}
-
-/* =========================
-   スマホ対応
-========================= */
-@media screen and (max-width: 600px) {
-  .count_cnt {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .count_cnt img {
-    width: 120px;
-    height: 160px;
-  }
-
-  .search {
-    width: 150px;
-  }
-
-  .select {
-    font-size: 0.9em;
-  }
 }
