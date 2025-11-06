@@ -7,6 +7,13 @@ body{
     overflow: hidden;
 } 
 
+.home-icon {
+    width: 40px;   /* アイコンの横幅 */
+    height: 40px;  /* アイコンの高さ */
+    object-fit: contain; /* 縦横比を維持 */
+}
+
+
 .c_hd{
     display: flex;
     justify-content: space-between;
