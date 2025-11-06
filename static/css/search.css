@@ -164,30 +164,31 @@ body {
   flex-shrink: 0;
 }
 
-/* 本の情報（中央寄せ） */
+/* 本の情報（中央ブロックだが、文字は左寄せ） */
 .book {
   flex: 1;
-  text-align: center;
+  text-align: left;
 }
 
 .book_ttl h2 {
   font-size: 16px;
   margin-bottom: 6px;
   color: #222;
+  text-align: left;
 }
 
 .book_about h3 {
   font-size: 14px;
   color: #555;
   margin-bottom: 5px;
+  text-align: left;
 }
 
 .book_about p {
   font-size: 13px;
   color: #333;
   line-height: 1.5;
-  display: inline-block;
-  text-align: left; /* 中央寄せ内で文章を左揃え */
+  text-align: left;
 }
 
 /* 貸出情報（右寄せ・文字のみ） */
@@ -243,7 +244,8 @@ body {
   }
 
   .book {
-    text-align: center;
+    text-align: left;
+    width: 100%;
   }
 
   .book_lend {
