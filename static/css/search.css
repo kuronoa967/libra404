@@ -1,196 +1,228 @@
-/* ===============================
-   検索画面CSS 完全版
-   =============================== */
 :root {
-  --bg: #fffdf9;
-  --header-bg: #fff;
-  --accent: #ffe68a;
-  --text: #333;
+  --bg-color: #fff;
+  --header-color: #b0c4de; /* ← ヘッダーの背景色を指定 */
+  --accent-color: #6a5acd;
+  --text-color: #333;
   --radius: 12px;
-  --shadow: 0 2px 6px rgba(0,0,0,0.1);
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Noto Sans JP", "Rounded Mplus 1c", sans-serif;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  color: var(--text);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
 }
 
-/* ===============================
-   ヘッダー
-   =============================== */
+/* ============================= */
+/* ヘッダー部分 */
+/* ============================= */
 .c_hd {
+  background-color: var(--header-color);
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--header-bg);
-  padding: 10px 20px;
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  border-bottom: 2px solid #999;
 }
 
-.c_hd_left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.home-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-}
-
-/* ===============================
-   タイトル検索エリア
-   =============================== */
-.c_hd_ttl {
-  display: flex;
-  align-items: center;
-  background: #f9f9f9;
-  border-radius: var(--radius);
-  padding: 4px 8px;
-  box-shadow: var(--shadow);
-}
-
-.search {
-  border: none;
-  outline: none;
-  padding: 8px 10px;
-  font-size: 16px;
-  border-radius: var(--radius);
-  background: transparent;
-  width: 200px;
-}
-
-.search-btn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-icon-img {
-  width: 24px;
-  height: 24px;
-}
-
-/* ===============================
-   カテゴリ検索
-   =============================== */
+.c_hd_left,
 .c_hd_right {
+  display: flex;
+  align-items: center;
+}
+
+/* ホームアイコン */
+.home-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.home-icon:hover {
+  transform: scale(1.05);
+}
+
+/* タイトル検索 */
+.c_hd_ttl {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.select {
-  padding: 8px 12px;
+.search {
+  padding: 8px 10px;
   border-radius: var(--radius);
   border: 1px solid #ccc;
-  font-size: 16px;
-  background: #fff;
-  box-shadow: var(--shadow);
-  outline: none;
-  cursor: pointer;
+  width: 230px;
+  font-size: 14px;
 }
 
+/* カテゴリ選択 */
+.select {
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+  width: 180px;
+  font-size: 14px;
+}
+
+/* ============================= */
+/* 虫眼鏡ボタン */
+/* ============================= */
+.search-btn,
 .reload-btn {
   border: none;
   background: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.reload-icon-img {
-  width: 24px;
-  height: 24px;
-}
-
-/* ===============================
-   検索結果
-   =============================== */
-.c_main {
-  padding: 20px;
-}
-
-.count_hd_ttl {
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: var(--text);
-}
-
-.count_body {
-  margin-bottom: 20px;
-}
-
-.count_wrap {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
+  padding: 5px;
   transition: transform 0.2s ease;
 }
 
+.search-btn:hover,
+.reload-btn:hover {
+  transform: scale(1.1);
+}
+
+.search-icon-img,
+.reload-icon-img {
+  width: 22px;
+  height: 22px;
+}
+
+/* ============================= */
+/* メインコンテンツ */
+/* ============================= */
+.c_main {
+  padding: 30px 0;
+}
+
+.u_inner {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* 件数表示 */
+.count_hd_ttl {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* 本のリスト */
+.count_body {
+  margin-bottom: 25px;
+}
+
+.count_wrap {
+  background-color: #f9f9f9;
+  border-radius: var(--radius);
+  border: 1px solid #ddd;
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
 .count_wrap:hover {
-  transform: translateY(-4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .count_cnt {
   display: flex;
+  align-items: flex-start;
   text-decoration: none;
-  color: var(--text);
+  color: var(--text-color);
+  gap: 15px;
 }
 
 .count_cnt img {
-  width: 160px;
-  height: 200px;
+  width: 120px;
+  height: 160px;
+  border-radius: 8px;
   object-fit: cover;
-  border-right: 1px solid #eee;
 }
 
 .book {
   flex: 1;
-  padding: 10px 15px;
 }
 
 .book_ttl h2 {
-  margin: 0;
-  font-size: 18px;
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #444;
 }
 
 .book_about h3 {
-  margin: 10px 0 4px 0;
-  font-size: 16px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
 }
 
 .book_about p {
-  margin: 0;
-  line-height: 1.6;
-  font-size: 15px;
-  color: #555;
+  font-size: 13px;
+  color: #333;
+  line-height: 1.5;
 }
 
 .book_lend {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent);
-  padding: 10px;
-  writing-mode: vertical-rl;
+  margin-left: auto;
+  align-self: center;
+}
+
+.book_lend_ttl {
+  background-color: #98fb98;
+  color: #004d00;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  font-size: 14px;
   text-align: center;
-  font-weight: bold;
-  color: #222;
+}
+
+/* ============================= */
+/* レスポンシブ対応 */
+/* ============================= */
+@media (max-width: 768px) {
+  .c_hd {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .c_hd_left,
+  .c_hd_right {
+    width: 100%;
+  }
+
+  .count_wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .count_cnt {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .count_cnt img {
+    width: 100px;
+    height: 140px;
+  }
+
+  .book_about p {
+    text-align: left;
+  }
 }
