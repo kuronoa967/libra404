@@ -42,7 +42,7 @@
     <div class="u_inner">
       <section class="count">
         <header class="count_hd">
-          <h1 class="count_hd_ttl">検索結果</h1>
+          <h1 class="count_hd_ttl"><span id="result-count">0</span> 件ヒット</h1>
         </header>
 
         <!-- 本① -->
@@ -132,6 +132,12 @@
       </section>
     </div>
   </main>
+
+  <script>
+    // 検索結果数を自動カウント
+    const books = document.querySelectorAll(".count_body");
+    document.getElementById("result-count").textContent = books.length;
+  </script>
 
 </body>
 </html>
