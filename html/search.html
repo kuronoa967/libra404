@@ -17,11 +17,13 @@
       </a>
       <div class="c_hd_ttl">
         <input type="search" class="search" placeholder="タイトルを検索...">
+        <!-- タイトル検索の虫眼鏡画像 -->
         <button class="search-btn">
           <img src="../static/images/Magnifying glass.png" alt="検索" class="search-icon-img">
         </button>
       </div>
     </div>
+
     <div class="c_hd_right">
       <select class="select">
         <option value="検索窓">カテゴリー検索</option>
@@ -36,7 +38,9 @@
         <option value="えほん">えほん</option>
         <option value="自己啓発本">自己啓発本</option>
       </select>
-      <button class="reload-btn">
+
+      <!-- カテゴリ検索の虫眼鏡画像（リロードボタン扱い） -->
+      <button class="reload-btn" onclick="location.reload();">
         <img src="../static/images/Magnifying glass.png" alt="再読み込み" class="reload-icon-img">
       </button>
     </div>
