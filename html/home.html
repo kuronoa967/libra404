@@ -20,17 +20,23 @@
         </nav>
 
         <aside class="side-actions">
-            <a href="./login.html" id="loginButton" class="button button-login-info">
-                ログイン</a>
-            <a href="#" class="button">ログアウト</a>
-            <a href="./signin.html" class="button">新規登録</a>
-        </aside>
+    
+    <div id="logged-out" th:if="${!session.login}"> 
+        <a href="/login" class="button button-login-info">ログイン</a>
+        <a href="/register" class="button">新規登録</a>
     </div>
+    
+    <div id="logged-in" th:if="${session.login}">
+        <a href="/account" class="button button-login-info">アカウント情報</a>
+        <a href="/logout" class="button">ログアウト</a>
+    </div>
+    
+</aside>
 
-    <footer id="loginMessage" class="message-area">
-        <p>※ログインをしてください</p>
-        <p>はじめての人は新規登録をしてください</p>
-    </footer>
+<footer id="loginMessage" class="message-area" th:if="${!session.login}">
+    <p>※ログインをしてください</p>
+    <p>はじめての人は新規登録をしてください</p>
+</footer>
 
     <script>
         // 1. ボタン要素とメッセージ要素を取得する
