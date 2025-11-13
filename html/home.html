@@ -23,11 +23,11 @@
             
             <div id="logged-out" th:if="${!session.login}"> 
                 <a href="/login" class="button button-login-info">ログイン</a>
-                <a href="/register" class="button">新規登録</a>
+                <a href="/signin" class="button">新規登録</a>
             </div>
             
             <div id="logged-in" th:if="${session.login}">
-                <a href="/account" class="button button-login-info">アカウント情報</a>
+                <a href="/acinfo" class="button button-login-info">アカウント情報</a>
                 <a href="/logout" class="button">ログアウト</a> 
             </div>
             
