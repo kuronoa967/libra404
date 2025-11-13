@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -10,170 +10,80 @@
 
 <body>
 
-  <!-- =========================
-       ヘッダー
-  ========================== -->
   <header class="c_hd">
-    <div class="c_hd_left">
-      <a href="home.html">
-        <img src="../static/images/icon.png" alt="ホームアイコン" class="home-icon">
-      </a>
-      <div class="c_hd_ttl">
-        <input type="search" id="titleSearch" class="search" placeholder="タイトルを検索...">
-        <button class="search-btn" onclick="searchBooks()">
-          <img src="../static/images/Magnifying glass.png" alt="検索" class="search-icon-img">
-        </button>
+    <form th:action="@{/search}" method="get" class="c_hd_form">
+      <div class="c_hd_left">
+        <a href="home.html">
+          <img src="../static/images/icon.png" alt="ホームアイコン" class="home-icon">
+        </a>
+        <div class="c_hd_ttl">
+          <input type="search" id="titleSearch" name="title" class="search" placeholder="タイトルを検索..." th:value="${searchTitle}">
+          <button type="submit" class="search-btn">
+            <img src="../static/images/Magnifying glass.png" alt="検索" class="search-icon-img">
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div class="c_hd_right">
-      <select id="categorySelect" class="select">
-        <option value="">カテゴリー検索</option>
-        <option value="ファンタジー">ファンタジー</option>
-        <option value="ミステリー">ミステリー</option>
-        <option value="ノンフィクション">ノンフィクション</option>
-        <option value="ホラー">ホラー</option>
-        <option value="専門書">専門書</option>
-        <option value="SF">SF</option>
-        <option value="恋愛">恋愛</option>
-        <option value="児童書">児童書</option>
-        <option value="えほん">えほん</option>
-        <option value="自己啓発本">自己啓発本</option>
-      </select>
-      <button class="reload-btn" onclick="reloadPage()">
-        <img src="../static/images/Magnifying glass.png" alt="再読み込み" class="reload-icon-img">
-      </button>
-    </div>
+      <div class="c_hd_right">
+        <select id="categorySelect" name="category" class="select">
+          <option value="">カテゴリー検索</option>
+          <option value="ファンタジー" th:selected="${searchCategory == 'ファンタジー'}">ファンタジー</option>
+          <option value="ミステリー" th:selected="${searchCategory == 'ミステリー'}">ミステリー</option>
+          <option value="ノンフィクション" th:selected="${searchCategory == 'ノンフィクション'}">ノンフィクション</option>
+          <option value="ホラー" th:selected="${searchCategory == 'ホラー'}">ホラー</option>
+          <option value="専門書" th:selected="${searchCategory == '専門書'}">専門書</option>
+          <option value="SF" th:selected="${searchCategory == 'SF'}">SF</option>
+          <option value="恋愛" th:selected="${searchCategory == '恋愛'}">恋愛</option>
+          <option value="児童書" th:selected="${searchCategory == '児童書'}">児童書</option>
+          <option value="えほん" th:selected="${searchCategory == 'えほん'}">えほん</option>
+          <option value="自己啓発本" th:selected="${searchCategory == '自己啓発本'}">自己啓発本</option>
+        </select>
+        <a href="search.html" class="reload-btn">
+          <img src="../static/images/Magnifying glass.png" alt="再読み込み" class="reload-icon-img">
+        </a>
+      </div>
+    </form>
   </header>
 
-  <!-- =========================
-       メインコンテンツ
-  ========================== -->
   <main class="c_main">
     <div class="u_inner">
       <section class="count">
         <header class="count_hd">
-          <h1 class="count_hd_ttl"><span id="result-count">0</span> 件ヒット</h1>
+          <h1 class="count_hd_ttl"><span th:text="${books.size()}">0</span> 件ヒット</h1>
         </header>
 
-        <!-- 本① -->
-        <div class="count_body">
+        <div class="count_body" th:each="book : ${books}">
           <div class="count_wrap">
-            <a href="bdetail.html?id=1" class="count_cnt">
-              <img src="../static/images/magazine_1.jpg" alt="ROCKIN'ON JAPAN 2025年2月号">
+            <a th:href="@{/bdetail(id=${book.id})}" class="count_cnt">
+              <img th:src="@{${book.imagePath}}" th:alt="${book.title}">
               <div class="book">
                 <div class="book_ttl">
                   <h2>タイトル：</h2>
-                  <h2>ROCKIN'ON JAPAN 2025年2月号</h2>
+                  <h2 th:text="${book.title}">本のタイトル</h2>
                 </div>
                 <div class="book_about">
                   <h3>あらすじ：</h3>
                   <p>
-                    THE ORAL CIGARETTES<br>
-                    今こそ、ロックバンドシーンを背負う──<br>
-                    「PARASITE DEJAVU」、そして最高傑作『AlterGeist0000』。<br>
-                    今の想いをすべて語る、初の表紙巻頭特集！<br>
-                    山中拓也・2万字インタビューも
+                    <span th:text="${book.synopsis}">
+                        著者の情報やあらすじがここに表示されます。
+                    </span>
                   </p>
                 </div>
               </div>
               <div class="book_lend">
-                <h2 class="book_lend_ttl available">貸出可</h2>
+                <h2 th:class="${book.available} ? 'book_lend_ttl available' : 'book_lend_ttl unavailable'" 
+                    th:text="${book.available} ? '貸出可' : '貸出不可'">貸出可/貸出不可</h2>
               </div>
             </a>
           </div>
         </div>
-　
-        <!-- 本② -->
-        <div class="count_body">
-          <div class="count_wrap">
-            <a href="bdetail.html?id=2" class="count_cnt">
-              <img src="../static/images/はりぽた.jpg" alt="ハリーポッター 賢者の石">
-              <div class="book">
-                <div class="book_ttl">
-                  <h2>タイトル：</h2>
-                  <h2>ハリーポッター　賢者の石</h2>
-                </div>
-                <div class="book_about">
-                  <h3>あらすじ：</h3>
-                  <p>
-                    J.K.ローリング<br>
-                    ハリー、おまえさんは魔法使いだ──<br>
-                    いじわるな親戚ダーズリー家で暮らしていたハリー。<br>
-                    11歳の誕生日に、ホグワーツ魔法魔術学校から<br>
-                    入学許可証が届く──！
-                  </p>
-                </div>
-              </div>
-              <div class="book_lend">
-                <h2 class="book_lend_ttl unavailable">貸出不可</h2>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- 本③ -->
-        <div class="count_body">
-          <div class="count_wrap">
-            <a href="bdetail.html?id=3" class="count_cnt">
-              <img src="../static/images/ゾロリ.jpg" alt="かいけつゾロリの地獄旅行">
-              <div class="book">
-                <div class="book_ttl">
-                  <h2>タイトル：</h2>
-                  <h2>かいけつゾロリの地獄旅行</h2>
-                </div>
-                <div class="book_about">
-                  <h3>あらすじ：</h3>
-                  <p>
-                    原 ゆたか<br>
-                    なつかしいあのキツネ！<br>
-                    「かいけつゾロリのてんごくとじごく」の続編。<br>
-                    7つの地獄をクリアすれば生き返れる！？<br>
-                    舌抜き地獄・血の池地獄などゾロリ達の冒険が再び！
-                  </p>
-                </div>
-              </div>
-              <div class="book_lend">
-                <h2 class="book_lend_ttl available">貸出可</h2>
-              </div>
-            </a>
-          </div>
+        <div th:if="${books.empty}">
+            <p>検索条件に一致する本は見つかりませんでした。</p>
         </div>
 
       </section>
     </div>
   </main>
 
-  <!-- =========================
-       JavaScript（最低限）
-  ========================== -->
-  <script>
-    // 件数をカウント
-    document.getElementById("result-count").textContent =
-      document.querySelectorAll(".count_body").length;
-
-    // タイトル検索
-    function searchBooks() {
-      const keyword = document.getElementById("titleSearch").value.trim();
-      const books = document.querySelectorAll(".count_body");
-      let count = 0;
-      books.forEach(book => {
-        const title = book.querySelector(".book_ttl h2:nth-of-type(2)").textContent;
-        if (title.includes(keyword) || keyword === "") {
-          book.style.display = "";
-          count++;
-        } else {
-          book.style.display = "none";
-        }
-      });
-      document.getElementById("result-count").textContent = count;
-    }
-
-    // 再読み込み
-    function reloadPage() {
-      location.reload();
-    }
-  </script>
-
-</body>
+  </body>
 </html>
