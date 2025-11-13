@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,46 +15,29 @@
 
     <div class="main-content">
         <nav class="main-actions">
-            <a href="./search.html" class="button">本を探す</a>
-            <a href="./bookshelf.html" class="button">本棚</a>
+            <a href="/search" class="button">本を探す</a>
+            <a href="/bookshelf" class="button">本棚</a>
         </nav>
 
         <aside class="side-actions">
-    
-    <div id="logged-out" th:if="${!session.login}"> 
-        <a href="/login" class="button button-login-info">ログイン</a>
-        <a href="/register" class="button">新規登録</a>
+            
+            <div id="logged-out" th:if="${!session.login}"> 
+                <a href="/login" class="button button-login-info">ログイン</a>
+                <a href="/register" class="button">新規登録</a>
+            </div>
+            
+            <div id="logged-in" th:if="${session.login}">
+                <a href="/account" class="button button-login-info">アカウント情報</a>
+                <a href="/logout" class="button">ログアウト</a> 
+            </div>
+            
+        </aside>
     </div>
-    
-    <div id="logged-in" th:if="${session.login}">
-        <a href="/account" class="button button-login-info">アカウント情報</a>
-        <a href="/logout" class="button">ログアウト</a>
-    </div>
-    
-</aside>
 
-<footer id="loginMessage" class="message-area" th:if="${!session.login}">
-    <p>※ログインをしてください</p>
-    <p>はじめての人は新規登録をしてください</p>
-</footer>
+    <footer id="loginMessage" class="message-area" th:if="${!session.login}">
+        <p>※ログインをしてください</p>
+        <p>はじめての人は新規登録をしてください</p>
+    </footer>
 
-    <script>
-        // 1. ボタン要素とメッセージ要素を取得する
-        const loginButton = document.getElementById('loginButton');
-        const loginMessage = document.getElementById('loginMessage');
-
-        // 2. ボタンにクリックイベントリスナーを追加する
-        loginButton.addEventListener('click', () => {
-            // 3. メッセージの現在の表示状態をチェックする
-            // 'none'（非表示）であれば 'block'（表示）にする
-            if (loginMessage.style.display === 'none' || loginMessage.style.display === '') {
-                loginMessage.style.display = 'block';
-            } else {
-                // すでに表示されていれば、クリックで非表示に戻す (トグル機能)
-                loginMessage.style.display = 'none';
-            }
-        });
-    </script>
-
-</body>
+    </body>
 </html>
