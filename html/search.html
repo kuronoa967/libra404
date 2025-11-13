@@ -1,89 +1,161 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>検索画面</title>
-  <link rel="stylesheet" href="../static/css/search.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索画面</title>
+    <link rel="stylesheet" href="../static/css/search.css">
 </head>
 
 <body>
 
-  <header class="c_hd">
-    <form th:action="@{/search}" method="get" class="c_hd_form">
-      <div class="c_hd_left">
-        <a href="home.html">
-          <img src="../static/images/icon.png" alt="ホームアイコン" class="home-icon">
-        </a>
-        <div class="c_hd_ttl">
-          <input type="search" id="titleSearch" name="title" class="search" placeholder="タイトルを検索..." th:value="${searchTitle}">
-          <button type="submit" class="search-btn">
-            <img src="../static/images/Magnifying glass.png" alt="検索" class="search-icon-img">
-          </button>
-        </div>
-      </div>
-
-      <div class="c_hd_right">
-        <select id="categorySelect" name="category" class="select">
-          <option value="">カテゴリー検索</option>
-          <option value="ファンタジー" th:selected="${searchCategory == 'ファンタジー'}">ファンタジー</option>
-          <option value="ミステリー" th:selected="${searchCategory == 'ミステリー'}">ミステリー</option>
-          <option value="ノンフィクション" th:selected="${searchCategory == 'ノンフィクション'}">ノンフィクション</option>
-          <option value="ホラー" th:selected="${searchCategory == 'ホラー'}">ホラー</option>
-          <option value="専門書" th:selected="${searchCategory == '専門書'}">専門書</option>
-          <option value="SF" th:selected="${searchCategory == 'SF'}">SF</option>
-          <option value="恋愛" th:selected="${searchCategory == '恋愛'}">恋愛</option>
-          <option value="児童書" th:selected="${searchCategory == '児童書'}">児童書</option>
-          <option value="えほん" th:selected="${searchCategory == 'えほん'}">えほん</option>
-          <option value="自己啓発本" th:selected="${searchCategory == '自己啓発本'}">自己啓発本</option>
-        </select>
-        <a href="search.html" class="reload-btn">
-          <img src="../static/images/Magnifying glass.png" alt="再読み込み" class="reload-icon-img">
-        </a>
-      </div>
-    </form>
-  </header>
-
-  <main class="c_main">
-    <div class="u_inner">
-      <section class="count">
-        <header class="count_hd">
-          <h1 class="count_hd_ttl"><span th:text="${books.size()}">0</span> 件ヒット</h1>
-        </header>
-
-        <div class="count_body" th:each="book : ${books}">
-          <div class="count_wrap">
-            <a th:href="@{/bdetail(id=${book.id})}" class="count_cnt">
-              <img th:src="@{${book.imagePath}}" th:alt="${book.title}">
-              <div class="book">
-                <div class="book_ttl">
-                  <h2>タイトル：</h2>
-                  <h2 th:text="${book.title}">本のタイトル</h2>
-                </div>
-                <div class="book_about">
-                  <h3>あらすじ：</h3>
-                  <p>
-                    <span th:text="${book.synopsis}">
-                        著者の情報やあらすじがここに表示されます。
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="book_lend">
-                <h2 th:class="${book.available} ? 'book_lend_ttl available' : 'book_lend_ttl unavailable'" 
-                    th:text="${book.available} ? '貸出可' : '貸出不可'">貸出可/貸出不可</h2>
-              </div>
+    <header class="c_hd">
+        <div class="c_hd_left">
+            <a href="home.html">
+                <img src="../static/images/icon.png" alt="ホームアイコン" class="home-icon">
             </a>
-          </div>
+            <div class="c_hd_ttl">
+                <input type="search" class="search" placeholder="タイトルを検索...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
         </div>
-        <div th:if="${books.empty}">
-            <p>検索条件に一致する本は見つかりませんでした。</p>
+        <div class="c_hd_right">
+            <select class="select">
+                <option value="検索窓">カテゴリー検索</option>
+                <option value="ファンタジー">ファンタジー</option>
+                <option value="ミステリー">ミステリー</option>
+                <option value="ノンフィクション">ノンフィクション</option>
+                <option value="ホラー">ホラー</option>
+                <option value="専門書">専門書</option>
+                <option value="SF">SF</option>
+                <option value="恋愛">恋愛</option>
+                <option value="児童書">児童書</option>
+                <option value="えほん">えほん</option>
+                <option value="自己啓発本">自己啓発本</option>
+            </select>
         </div>
+    </header>
 
-      </section>
-    </div>
-  </main>
+    <main class="c_main">
+        <div class="u_inner">
+            <section class="count">
+                <header class="count_hd">
+                    <h1 class="count_hd_ttl">0件ヒット</h1>
+                </header>
+                <div class="count_body">
+                    <div class="count_wrap">
+                        <div class="count_cnt">
+                            <img src="../static/images/magazine_1.jpg" alt="「本のタイトル」の画像">
+                            <div class="book">
+                                <div class="book_ttl">
+                                    <h2 class="">タイトル：</h2>
+                                    <h2 class="">ROCKIN'ON JAPAN 2025年2月号</h2>
+                                </div>
+                                <div class="book_about">
+                                    <h3 class="">あらすじ：</h3>
+                                    <p class="book_about_text">
+                                        THE ORAL CIGARETTES<br>
+                                        今こそ、ロックバンドシーンを背負う──<br>
+                                        「PARASITE DEJAVU」、そして最高傑作『AlterGeist0000』。<br>
+                                        今の想いをすべて語る、初の表紙巻頭特集！<br>
+                                        山中拓也・2万字インタビューも<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="book_lend">
+                                <h2 class="book_lend_ttl">貸出可</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="count_body">
+                    <div class="count_wrap">
+                        <div class="count_cnt">
+                            <img src="../static/images/はりぽた.jpg" alt="「本のタイトル」の画像">
+                            <div class="book">
+                                <div class="book_ttl">
+                                    <h2 class="">タイトル：</h2>
+                                    <h2 class="">ハリーポッター　賢者の石</h2>
+                                </div>
+                                <div class="book_about">
+                                    <h3 class="">あらすじ：</h3>
+                                    <p class="book_about_text">
+                                        J.K.ローリング<br>
+                                        ハリー、おまえさんは魔法使いだ──<br>
+                                        いじわるな親戚ダーズリー家の元でいじめられながら<br>
+                                        暮らしていたハリー・ポッター。<br>
+                                        11歳の誕生日を迎えようとしていたある日、ハリーの元に、<br>
+                                        ホグワーツ魔法魔術学校から入学許可証が届き＿？！<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="book_lend">
+                                <h2 class="book_lend_ttl">貸出可</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="count_body">
+                    <div class="count_wrap">
+                        <div class="count_cnt">
+                            <img src="../static/images/magazine_1.jpg" alt="「本のタイトル」の画像">
+                            <div class="book">
+                                <div class="book_ttl">
+                                    <h2 class="">タイトル：</h2>
+                                    <h2 class="">ROCKIN'ON JAPAN 2025年2月号</h2>
+                                </div>
+                                <div class="book_about">
+                                    <h3 class="">あらすじ：</h3>
+                                    <p class="book_about_text">
+                                        THE ORAL CIGARETTES<br>
+                                        今こそ、ロックバンドシーンを背負う──<br>
+                                        「PARASITE DEJAVU」、そして最高傑作『AlterGeist0000』。<br>
+                                        今の想いをすべて語る、初の表紙巻頭特集！<br>
+                                        山中拓也・2万字インタビューも<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="book_lend">
+                                <h2 class="book_lend_ttl">貸出可</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="count_body">
+                    <div class="count_wrap">
+                        <div class="count_cnt">
+                            <img src="../static/images/ゾロリ.jpg" alt="「本のタイトル」の画像">
+                            <div class="book">
+                                <div class="book_ttl">
+                                    <h2 class="">タイトル：</h2>
+                                    <h2 class="">かいけつゾロリの地獄旅行</h2>
+                                </div>
+                                <div class="book_about">
+                                    <h3 class="">あらすじ：</h3>
+                                    <p class="book_about_text">
+                                        原　ゆたか<br>
+                                        なつかしいあのキツネ！<br>
+                                        「かいけつゾロリのてんごくとじごく」の続編。<br>
+                                        閻魔帳に載ってしまい、7つの地獄の責め苦を<br>
+                                        味わわなければならないゾロリ達。<br>
+                                        7つの地獄をクリアーすれば生き返らせて<br>
+                                        もらえると約束を取り付け、<br>
+                                        舌抜き地獄、引っ張り地獄、血の池地獄、<br>
+                                        針山地獄、おやじギャグ地獄、炎地獄、蟻地獄と挑んでいく。<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="book_lend">
+                                <h2 class="book_lend_ttl">貸出可</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
-  </body>
+</body>
+
 </html>
