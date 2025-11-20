@@ -15,20 +15,20 @@
 
     <div class="main-content">
         <nav class="main-actions">
-            <a href="/search" class="button">本を探す</a>
-            <a href="/bookshelf" class="button">本棚</a>
+            <a href="./searchDisp" class="button">本を探す</a>
+            <a href="./bookshelfDisp" class="button">本棚</a>
         </nav>
 
         <aside class="side-actions">
             
             <div id="logged-out" th:if="${!session.login}"> 
-                <a href="/login" class="button button-login-info">ログイン</a>
-                <a href="/signin" class="button">新規登録</a>
+                <a href="./loginDisp" class="button button-login-info">ログイン</a>
+                <a href="./signinDisp" class="button">新規登録</a>
             </div>
             
             <div id="logged-in" th:if="${session.login}">
-                <a href="/acinfo" class="button button-login-info">アカウント情報</a>
-                <a href="/logout" class="button">ログアウト</a> 
+                <a href="./acinfoDisp" class="button button-login-info">アカウント情報</a>
+                <a href="logout" class="button">ログアウト</a> 
             </div>
             
         </aside>
