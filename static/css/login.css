@@ -1,102 +1,31 @@
-/* 全体のフォントと中央配置 */
-body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    
-    /* 画面全体を中央寄せするためのFlexbox設定 */
-    display: flex;
-    flex-direction: column; 
-    justify-content: center; /* 垂直方向の中央寄せ */
-    align-items: center; /* 水平方向の中央寄せ */
-    min-height: 100vh; /* 画面全体を高さとする */
+body { 
+    font-family: sans-serif; 
+    text-align: center; 
 }
-
-/* ログインタイトル */
-h1 {
-    font-size: 2em;
-    margin-bottom: 40px;
-}
-
-/* フォーム全体 (中央寄せはbodyのFlexboxで行うため、formは幅調整のみ) */
 form {
-    display: block; 
-    text-align: left; /* 入力欄とラベルは左寄せ */
-    width: 500px; /* 全体の幅を調整 */
-    margin: 0 auto;
+    display: inline-block; /* 全体を中央寄せ */
+    text-align: left;    /* 中身は左寄せ */
 }
-
 .form-group {
-    display: flex; /* ラベルと入力を横並びにする */
-    align-items: center;
-    margin: 15px 0;
+    margin: 30px 0;
 }
-
 label {
-    /* 画像のレイアウトに合わせてラベルの幅を固定し、右揃えにする */
     display: inline-block;
-    width: 150px; 
-    text-align: right; 
-    padding-right: 15px; /* ラベルと入力欄の間のスペース */
-    font-weight: normal;
+    width: 150px;       /* ラベル幅を揃える */
 }
-
 input {
-    flex-grow: 1; /* 残りのスペースを埋める */
-    width: auto; 
-    padding: 8px 5px;
-    border: 1px solid #000;
-    border-radius: 0; /* 角丸はつけない */
-    box-sizing: border-box;
+    width: 300px;
+    padding: 5px;
 }
-
-/* --- ボタンエリア --- */
-
-/* キャンセル/ログインボタンのグループ */
-.button-group.top-buttons {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
-
-/* 新規登録ボタンのグループ */
-.button-group.signin-group {
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* ボタン共通スタイル */
 .btn {
-    /* 画像のボタンのスタイルを再現 */
     border: 1px solid #000;
-    border-radius: 0; /* 角丸なし */
-    padding: 10px 30px; 
-    margin: 0 15px; /* ボタン間のスペース */
+    border-radius: 8px;     /* 角丸 */
+    padding: 5px 15px;
+    margin: 20px;
     background: #fff;
     cursor: pointer;
-    font-size: 1em;
-    display: inline-block;
-    text-decoration: none;
-    color: #000;
-    width: 120px; /* 幅を統一 */
-    box-sizing: border-box;
-    text-align: center;
 }
-
-/* 新規登録ボタンは上下中央に配置されるように調整 */
-.signin-btn {
-    width: 150px;
-    margin: 0; /* 中央寄せのためマージンをリセット */
-}
-
-/* --- エラーメッセージ --- */
-.error-message {
-    color: red;
-    font-size: 1.1em;
+.button-group {
     text-align: center;
-    margin-top: 40px;
-    
-    /* 初期状態は非表示 */
-    display: none; 
+    margin-top: 15px;
 }
