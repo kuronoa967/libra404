@@ -45,7 +45,7 @@
                 <div th:if="${bookList != null and !#lists.isEmpty(bookList)}" class="book-list">
                     <div th:each="b : ${bookList}" class="book-item">
                         <div class="book-cover">
-                            <img th:src="*{b.phpto}" alt="本の画像" class="book-cover-img" />
+                            <img th:src="*{b.photo}" alt="本の画像" class="book-cover-img" />
                             <span class="placeholder-text">本の画像</span>
                         </div>
                         <div class="book-details">
