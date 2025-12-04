@@ -38,7 +38,7 @@
         <section class="count">
             <header class="count_hd">
                 <h1 class="count_hd_ttl" th:text="${#lists.size(bookList)} + '件ヒット'"></h1>
-            </header>
+            </header> 
 
             <!-- 書籍のリストをループ表示 -->
             <div class="count_body" th:each="book : ${bookList}">
