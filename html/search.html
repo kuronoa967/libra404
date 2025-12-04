@@ -42,6 +42,7 @@
 
             <!-- 書籍のリストをループ表示 -->
             <div class="count_body" th:each="book : ${bookList}">
+                <a th:href="@{/bdetail(id=${book.id})}" class="book_link">
                 <div class="count_wrap">
                     <div class="count_cnt">
                         <img th:src="@{${book.imagePath}}" th:alt="'『' + ${book.title} + '』の画像'">
@@ -64,6 +65,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
 
         </section>
