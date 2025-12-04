@@ -16,6 +16,15 @@ body {
     margin-bottom: 5px;
 }
 
+.title {
+      font-size: 64px; /* 文字サイズ: 64ピクセル */
+      font-weight: 900; /* 文字の太さ: 極太 (最も太い) */
+      letter-spacing: 1px; /* 文字間隔: 1ピクセル */
+      /* フォントファミリー: Impactなど、インパクトの強いフォントを優先 */
+      font-family: Impact, Haettenschweiler, 'Arial Black', 'Noto Sans JP', sans-serif;
+      margin: 0; /* 外側の余白: ゼロ (デフォルトのh1マージンを解除) */
+}
+
 .header hr {
     width: 200px;
     border: 2px solid black;
