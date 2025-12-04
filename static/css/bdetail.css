@@ -197,3 +197,17 @@ body > * {
 .app-button:hover {
     background-color: #f0f0f0;
 }
+
+
+
+
+.book_link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.book_link:hover {
+    opacity: 0.9;
+}
+
