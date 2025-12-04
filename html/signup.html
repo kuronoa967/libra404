@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>新規登録</title>
-  <link rel="stylesheet" href="../static/css/signin.css">
+  <link rel="stylesheet" href="../static/css/signup.css">
   </head>
 <body>
   <h1>新規登録</h1>
-  <form th:action="@{/}" method="post" th:object="${signinForm}">
+  <form th:action="@{/}" method="post" th:object="${signupForm}">
     <div class="form-group">
       <label for="mname">氏名:</label>
       <input type="text" id="mname" name="mname" th:value="*{mname}">
@@ -38,11 +38,12 @@
 
     <div class="button-group">
       <a href="loginDisp" class="btn" >キャンセル</a>
-      <button type="submit" class="btn" th:formation="@{/Libra404/signin}">新規登録</button>
+      <button type="submit" class="btn" th:formation="@{/Libra404/signup}">新規登録</button>
     </div>
   </form>
 </body>
 </html>
+
 
 
 
