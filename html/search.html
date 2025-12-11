@@ -5,32 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>検索画面</title>
-    <link rel="stylesheet" href="../static/css/search.css">
+    <link rel="stylesheet" th:href="@{/css/search.css}">
 </head>
 
 <body>
 
 <header class="c_hd">
-    <div class="c_hd_left">
-        <a th:href="@{/home}">
-            <img th:src="@{/static/images/icon.png}" alt="ホームアイコン" class="home-icon">
-        </a>
-        <div class="c_hd_ttl">
-            <form th:action="@{/search}" method="get">
-                <input type="search" name="keyword" class="search" placeholder="タイトルを検索..." th:value="${keyword}">
-                <i class="fas fa-search search-icon"></i>
-            </form>
+    <form th:action="@{/Libra404/search/filter}" method="get"></form>
+        <div class="c_hd_left">
+            <a th:href="@{/Libra404/home}">
+                <img th:src="@{/image/icon.png}" alt="ホームアイコン" class="home-icon">
+            </a>
+            <div class="c_hd_ttl">
+                <input type="search" name="word" class="search" placeholder="タイトルを検索..." th:value="${word}">
+                <input type="hidden" name="cid" th:value="${selectCid}">
+                <button class="fas fa-search search-icon" type="submit"><img th:src="@{/image/Magnifying glass.png}" alt="検索"></button>
+            </div>
         </div>
-    </div>
-    <div class="c_hd_right">
-        <form th:action="@{/search}" method="get">
-            <select name="cid" th:field="*{cid}">
-                <option value="">カテゴリー検索</option>
-                <option th:each="c : ${cList}" th:value="${c.cid}" th:text="${c.category}"></option>
+        <div class="c_hd_right">
+            <input type="hidden" name="word" th:value="${word}">
+            <select name="cid">
+                <option value="0">カテゴリー検索</option>
+                <option th:each="c : ${cList}" th:value="${c.cid}" th:text="${c.category}" th:selected="${c.cid == selectCid}"></option>
             </select>
-            <button type="submit">検索</button>
-        </form>
-    </div>
+            <button type="submit"><img th:src="@{/image/filter.png}" alt="検索"></button>
+        </div>
+    </form>
 </header>
 
 <main class="c_main">
@@ -42,26 +42,24 @@
 
             <!-- 書籍のリストをループ表示 -->
             <div class="count_body" th:each="book : ${bookList}">
-                <a th:href="@{/bdetail(id=${book.id})}" class="book_link">
+                <a th:href="@{/Libra404/bdetail(honid=${book.honid})}" class="book_link">
                 <div class="count_wrap">
                     <div class="count_cnt">
-                        <img th:src="@{${book.imagePath}}" th:alt="'『' + ${book.title} + '』の画像'">
-
+                        <img th:src="${book.photo}" th:alt="'No image'">
                         <div class="book">
                             <div class="book_ttl">
                                 <h2>タイトル：</h2>
-                                <h2 th:text="${book.title}">書籍タイトル</h2>
+                                <h2 th:text="${book.title}"></h2>
                             </div>
                             <div class="book_about">
                                 <h3>あらすじ：</h3>
-                                <p class="book_about_text" th:utext="${#strings.replace(book.summary, '\n', '<br>')}">
-                                    あらすじテキスト
-                                </p>
+                                <p class="book_about_text" th:text="${book.synopsis}"></p>
                             </div>
                         </div>
 
                         <div class="book_lend">
-                            <h2 class="book_lend_ttl" th:text="${book.available ? '貸出可' : '貸出中'}">貸出可</h2>
+                            <h2 class="book_lend_ttl" th:if="${book.botype}">貸出可</h2>
+                            <h2 class="book_lend_ttl" th:unless="${book.botype}">貸出不可</h2>
                         </div>
                     </div>
                 </div>
