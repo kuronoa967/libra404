@@ -1,85 +1,29 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>貸出完了画面</title>
     <link rel="stylesheet" href="../static/css/lentcomp.css">
 </head>
+
 <body>
 
-    <div id="book-title-display">（本のタイトル）</div>
+    <div id="book-title-display" th:text="${title}">（本のタイトル）</div>
     <div id="conf-message">貸出完了</div>
 
     <div class="button-group">
-        <a href="#" class="btn" id="return-search-btn">検索画面に戻る</a>
-        
-        <a href="#" class="btn" id="bookshelf-btn">本棚</a>
+        <!-- 検索画面に戻る -->
+        <a class="btn" id="return-search-btn" th:href="@{/search}">
+            検索画面に戻る
+        </a>
+
+        <!-- 本棚画面 -->
+        <a class="btn" id="bookshelf-btn" th:href="@{/bookshelf}">
+            本棚
+        </a>
     </div>
-
-<script>
-    // ====================================
-    // JavaScript (DBデータ取得と画面遷移のシミュレーション)
-    // ====================================
-    document.addEventListener('DOMContentLoaded', () => {
-        const bookTitleDisplay = document.getElementById('book-title-display');
-        const returnSearchBtn = document.getElementById('return-search-btn');
-        const bookshelfBtn = document.getElementById('bookshelf-btn');
-
-        // ★ 1. URLから本のタイトルを取得する処理（前の画面からの引き継ぎをシミュレート） ★
-        function getBookTitleFromUrl() {
-            const params = new URLSearchParams(window.location.search);
-            // URLが ?title=タイトル名 の形式で渡されることを想定
-            return params.get('title') || 'タイトルが見つかりません';
-        }
-
-        // タイトルを画面に表示
-        bookTitleDisplay.textContent = getBookTitleFromUrl();
-
-        
-        // ★ 2. データベースから取得する書籍情報のダミーデータ ★
-        // DBフィールド名: phpto, title, synopsis, botype
-        const DUMMY_BOOK_DATA = [
-            { phpto: 'img/book1.jpg', title: '新しいファンタジー', synopsis: '壮大な物語。', botype: 'ファンタジー' },
-            { phpto: 'img/book2.jpg', title: '密室のミステリー', synopsis: '犯人は誰だ？', botype: 'ミステリー' },
-            { phpto: 'img/book3.jpg', title: '自己啓発の極意', synopsis: '成功への道。', botype: '自己啓発本' }
-        ];
-
-        /**
-         * データベースから書籍データを取得し、次の画面へ渡す処理をシミュレート
-         * @param {string} targetUrl - 遷移先のURL ('search.html' or 'bookshelf.html')
-         */
-        function handleNavigation(targetUrl) {
-            // 実際にはここでサーバーサイドの処理 (PHP) を呼び出し、DBからデータを取得します。
-
-            // --- フロントエンドでの遷移シミュレーション ---
-            // データをJSON文字列化し、URLクエリパラメータとして渡す (簡易的なデータ渡し)
-            const dataQuery = encodeURIComponent(JSON.stringify(DUMMY_BOOK_DATA));
-            
-            const fullUrl = `${targetUrl}?books=${dataQuery}`;
-            
-            console.log(`${targetUrl} へ遷移。DBデータをシミュレートして渡します。`);
-
-            // 実際の遷移
-            window.location.href = fullUrl;
-        }
-
-        
-        // ★ 3. イベントリスナー ★
-        
-        // 「検索画面に戻る」ボタン
-        returnSearchBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            handleNavigation('search.html');
-        });
-
-        // 「本棚」ボタン
-        bookshelfBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            handleNavigation('bookshelf.html');
-        });
-    });
-</script>
 
 </body>
 </html>
