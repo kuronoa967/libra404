@@ -1,55 +1,38 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>貸出確認画面</title>
     <link rel="stylesheet" href="../static/css/lentconf.css">
 </head>
+
 <body>
 
-    <div class="main-container">
-        <div class="confirmation-text">
-            <div id="book-title-display">（本のタイトル）</div>
-            <span>を借りますか？</span>
-        </div>
+<div class="main-container">
 
-        <div class="button-group">
-            <a href="#" class="btn" id="btn-no">いいえ</a>
-            <a href="#" class="btn" id="btn-yes">はい</a>
-        </div>
+    <div class="confirmation-text">
+        <!-- 本のタイトルをサーバから受け取って表示 -->
+        <div id="book-title-display" th:text="${title}">（本のタイトル）</div>
+        <span>を借りますか？</span>
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const bookTitleDisplay = document.getElementById('book-title-display');
-            const btnNo = document.getElementById('btn-no');
-            const btnYes = document.getElementById('btn-yes');
-            // ... (JavaScriptコードはそのまま)
-            let bookTitle = 'タイトル未取得';
-            let bookId = 999;
-            function initializeScreen() {
-                const params = new URLSearchParams(window.location.search);
-                bookTitle = params.get('title') || 'タイトルが見つかりません';
-                bookId = params.get('id') || '999';
-                bookTitleDisplay.textContent = bookTitle;
-            }
-            initializeScreen();
-            btnNo.addEventListener('click', (e) => {
-                e.preventDefault();
-                const prevUrl = `bdetail.html?id=${bookId}&title=${encodeURIComponent(bookTitle)}`;
-                window.location.href = prevUrl;
-            });
-            btnYes.addEventListener('click', (e) => {
-                e.preventDefault();
-                const mockMid = 123;
-                const today = new Date().toISOString().split('T')[0];
-                console.log('貸出登録');
-                console.log(`boid: ${bookId}, mid: ${mockMid}, boday: ${today}`);
-                const completionUrl = `lentcomp.html?title=${encodeURIComponent(bookTitle)}`;
-                window.location.href = completionUrl;
-            });
-        });
-    </script>
+
+    <div class="button-group">
+        <!-- 「いいえ」ボタンは本の詳細に戻る -->
+        <a class="btn" id="btn-no"
+           th:href="@{/bdetail(id=${id}, title=${title})}">
+            いいえ
+        </a>
+
+        <!-- 「はい」ボタンは貸出完了画面へ -->
+        <a class="btn" id="btn-yes"
+           th:href="@{/lentcomp(title=${title})}">
+            はい
+        </a>
+    </div>
+
+</div>
+
 </body>
 </html>
