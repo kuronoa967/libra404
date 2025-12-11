@@ -1,1 +1,97 @@
+/* 全体レイアウト */
+body {
+  font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background: #f4f6fb;
+  margin: 0;
+  padding: 40px 20px;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* フォーム本体 */
+form {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 30px 25px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* 各フォーム項目 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* 入力欄 */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: #5a8df4;
+  outline: none;
+}
+
+/* ボタンエリア */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+/* ボタン共通 */
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.2s ease, transform 0.1s ease;
+  width: 45%;
+}
+
+/* キャンセルボタン */
+.btn:first-child {
+  background: #cccccc;
+  color: #fff;
+}
+
+.btn:first-child:hover {
+  background: #b8b8b8;
+  transform: translateY(-2px);
+}
+
+/* 決定ボタン */
+.btn:last-child {
+  background: #4c8bf5;
+  color: #fff;
+}
+
+.btn:last-child:hover {
+  background: #3c7ae0;
+  transform: translateY(-2px);
+}
 
