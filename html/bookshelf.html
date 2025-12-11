@@ -44,7 +44,7 @@
                     <div th:each="b : ${bookList}" class="book-item">
                         <div class="book-cover">
                             <img th:src="*{b.photo}" alt="本の画像" class="book-cover-img" />
-                            <span class="placeholder-text"></span>
+                            <span class="placeholder-text">本の画像</span>
                         </div>
                         <div class="book-details">
                             <p><strong>タイトル:</strong> <span th:text="*{b.title}">タイトル</span></p>
