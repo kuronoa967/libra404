@@ -4,26 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libra404 - 検索画面</title>
+    <title>検索画面</title>
     <link rel="stylesheet" th:href="@{/css/search.css}">
 </head>
 
 <body>
 
 <header class="c_hd">
-    <form th:action="@{/Libra404/search/filter}" method="get"></form>
+    <form th:action="@{/Libra404/search/filter}" method="get">
         <div class="c_hd_left">
             <a th:href="@{/Libra404/home}">
                 <img th:src="@{/image/icon.png}" alt="ホームアイコン" class="home-icon">
             </a>
             <div class="c_hd_ttl">
                 <input type="search" name="word" class="search" placeholder="タイトルを検索..." th:value="${word}">
-                <input type="hidden" name="cid" th:value="${selectCid}">
                 <button class="fas fa-search search-icon" type="submit"><img th:src="@{/image/Magnifying glass.png}" alt="検索"></button>
             </div>
         </div>
         <div class="c_hd_right">
-            <input type="hidden" name="word" th:value="${word}">
             <select name="cid">
                 <option value="0">カテゴリー検索</option>
                 <option th:each="c : ${cList}" th:value="${c.cid}" th:text="${c.category}" th:selected="${c.cid == selectCid}"></option>
