@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,116 +10,78 @@
 <body>
 
 <div class="header">
-    <a href="home.html" class="home-link">
-        <span class="material-symbols-outlined book-icon">
-            book
-        </span>
+    <a th:href="@{/home}" class="home-link">
+        <span class="material-symbols-outlined book-icon">book</span>
         ホーム
     </a>
-    <div class="loan-status loan-unavailable">
-        貸し出し
-        <br>
-        不可
+
+    <!-- 貸出可否を model に渡しておく（例: book.available = true/false） -->
+    <div class="loan-status"
+         th:classappend="${book.available} ? 'loan-available' : 'loan-unavailable'">
+        貸し出し<br th:remove="tag">
+        <span th:text="${book.available} ? '可' : '不可'"></span>
     </div>
 </div>
 
 <div class="main-content">
+
+    <!-- 画像 -->
     <div class="book-image-container">
-        <img id="bookImage" class="book-image" src="" alt="本の画像">
-        <div class="image-placeholder">本の画像</div>
+        <img id="bookImage"
+             class="book-image"
+             th:src="${book.image != null} ? ${book.image} : ''"
+             th:if="${book.image != null}"
+             alt="本の画像">
+
+        <!-- 画像が無い場合表示 -->
+        <div class="image-placeholder"
+             th:if="${book.image == null}">
+            本の画像
+        </div>
     </div>
-    
+
     <div class="book-info">
         <p class="info-line">
-            <span class="info-label title-label">タイトル：</span><span id="bookTitle" class="info-value title-value"></span>
+            <span class="info-label title-label">タイトル：</span>
+            <span class="info-value title-value" th:text="${book.title}"></span>
         </p>
+
         <p class="info-line">
-            <span class="info-label">著者：</span><span id="bookAuthor" class="info-value author-value"></span>
+            <span class="info-label">著者：</span>
+            <span class="info-value author-value" th:text="${book.author}"></span>
+
             <span class="publisher-group">
-                <span class="info-label publisher-label">出版社：</span><span id="bookPublisher" class="info-value publisher-value"></span>
+                <span class="info-label publisher-label">出版社：</span>
+                <span class="info-value publisher-value" th:text="${book.publisher}"></span>
             </span>
         </p>
+
         <p class="info-line">
-            <span class="info-label">カテゴリ：</span><span id="bookCategory" class="info-value category-value"></span>
+            <span class="info-label">カテゴリ：</span>
+            <span class="info-value category-value" th:text="${book.category}"></span>
         </p>
+
         <p class="info-line abstract-label-line">
             <span class="info-label abstract-label">あらすじ</span>
         </p>
+
         <div class="abstract-box">
-            <p id="bookDescription" class="abstract-text"></p>
+            <p class="abstract-text" th:text="${book.description}"></p>
         </div>
     </div>
 </div>
 
 <div class="buttons">
-    <button id="back" class="app-button back-button">戻る</button>
-    <button id="borrow" class="app-button borrow-button">借りる</button>
+    <!-- 履歴戻るは JS しかないので、戻り先をサーバー側で指定 -->
+    <a th:href="@{/books}" class="app-button back-button">戻る</a>
+
+    <!-- 貸りるボタン（貸出不可なら disabled） -->
+    <a th:href="@{/lentconf(title=${book.title}, author=${book.author}, publisher=${book.publisher}, category=${book.category}, description=${book.description}, image=${book.image})}"
+       class="app-button borrow-button"
+       th:classappend="${!book.available} ? ' disabled'">
+       借りる
+    </a>
 </div>
-
-
-<script>
-// URLパラメータ取得
-function getQueryParams() {
-    const params = {};
-    window.location.search.substring(1).split("&").forEach(pair => {
-        const [key, value] = pair.split("=");
-        if(key) params[key] = decodeURIComponent(value);
-    });
-    return params;
-}
-
-// 本情報表示
-window.onload = function() {
-    const params = getQueryParams();
-    // 表示データの設定
-    document.getElementById("bookTitle").textContent = params.title || "タイトルサンプル";
-    document.getElementById("bookAuthor").textContent = params.author || "著者サンプル";
-    document.getElementById("bookPublisher").textContent = params.publisher || "出版社サンプル";
-    document.getElementById("bookCategory").textContent = params.category || "カテゴリサンプル";
-    document.getElementById("bookDescription").textContent = params.description || "ここに書籍のあらすじテキストが入ります。ここに書籍のあらすじテキストが入ります。ここに書籍のあらすじテキストが入ります。";
-    
-    const bookImage = document.getElementById("bookImage");
-    const imageUrl = params.image || ""; // 画像URLを取得
-    
-    if (imageUrl) {
-        bookImage.src = imageUrl;
-        // 画像がある場合はプレースホルダーを非表示に
-        document.querySelector('.image-placeholder').style.display = 'none';
-    } else {
-        // 画像がない場合はダミー画像を使用せず、プレースホルダーを表示
-        bookImage.style.display = 'none';
-        document.querySelector('.image-placeholder').style.display = 'flex';
-    }
-
-    // 戻るボタンの挙動
-    const backBtn = document.getElementById("back");
-    // 実際にはdocument.referrerを使うのがより正確ですが、ここでは便宜的にコメントアウト
-    // const referrer = document.referrer; 
-    // if(referrer.includes("search.html")) {
-    //     backBtn.onclick = () => window.location.href = "search.html";
-    // } else if(referrer.includes("bookshelf.html")) {
-    //     backBtn.onclick = () => window.location.href = "bookshelf.html";
-    // } else {
-    //     backBtn.onclick = () => window.location.href = "home.html";
-    // }
-    backBtn.onclick = () => {
-        // 戻る処理を実装 (例: window.history.back())
-        window.history.back();
-    };
-
-    // 借りるボタン
-    document.getElementById("borrow").onclick = function() {
-        // lentconf.html に本情報を渡す (元のコード通り)
-        const lentUrl = `lentconf.html?title=${encodeURIComponent(params.title)}&author=${encodeURIComponent(params.author)}&publisher=${encodeURIComponent(params.publisher)}&category=${encodeURIComponent(params.category)}&description=${encodeURIComponent(params.description)}&image=${encodeURIComponent(params.image)}`;
-        window.location.href = lentUrl;
-    };
-    
-    // 貸し出し不可の場合、借りるボタンを非活性化
-    // ※今回は画像再現のため、デフォルトで「貸し出し不可」表示をしますが、
-    //   実際にはデータに応じて表示/ボタン活性を切り替える処理が必要です。
-    // document.getElementById("borrow").disabled = true;
-};
-</script>
 
 </body>
 </html>
