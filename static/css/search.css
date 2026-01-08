@@ -1,8 +1,19 @@
 :root {
-  --bg-color: #fff;
-  --header-color: #b0c4de; /* ヘッダーの背景色 */
-  --text-color: #333;
+  /* メインカラー */
+  --bg-color: #ffffff;
+  --header-color: #b0c4de;
+  --text-color: #333333;
+  --text-muted: #555555;
+  --border-color: #dddddd;
+  --accent-hover: #eef2f8;
+  
+  /* 状態カラー */
+  --color-available: #008000;
+  --color-unavailable: #ff0000;
+
+  /* 共通パーツ */
   --radius: 12px;
+  --transition: 0.3s ease;
   font-family: "Noto Sans JP", "Rounded Mplus 1c", sans-serif;
 }
 
@@ -34,69 +45,31 @@ body {
 .c_hd_right {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .home-icon {
   width: 50px;
   height: 50px;
-  margin-right: 15px;
   border-radius: 50%;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform var(--transition);
 }
 
 .home-icon:hover {
   transform: scale(1.05);
 }
 
-/* タイトル検索 */
-.c_hd_ttl {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.search {
-  padding: 8px 10px;
+/* 検索・セレクトボックス共通 */
+.search, .select {
+  padding: 8px 12px;
   border-radius: var(--radius);
   border: 1px solid #ccc;
-  width: 230px;
   font-size: 14px;
 }
 
-/* カテゴリ選択 */
-.select {
-  padding: 8px 10px;
-  border-radius: var(--radius);
-  border: 1px solid #ccc;
-  width: 180px;
-  font-size: 14px;
-}
-
-/* ============================= */
-/* 虫眼鏡ボタン */
-/* ============================= */
-.search-btn,
-.reload-btn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  transition: transform 0.2s ease;
-}
-
-.search-btn:hover,
-.reload-btn:hover {
-  transform: scale(1.1);
-}
-
-.search-icon-img,
-.reload-icon-img {
-  width: 22px;
-  height: 22px;
-}
+.search { width: 230px; }
+.select { width: 180px; }
 
 /* ============================= */
 /* メインコンテンツ */
@@ -111,90 +84,81 @@ body {
   margin: 0 auto;
 }
 
-/* 件数表示 */
 .count_hd_ttl {
   font-size: 20px;
   margin-bottom: 20px;
-  color: var(--text-color);
 }
 
-/* 本リスト全体 */
+/* 本リスト項目 */
 .count_body {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .count_wrap {
   background-color: #f9f9f9;
   border-radius: var(--radius);
-  border: 1px solid #ddd;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* 子要素の角丸をはみ出させない */
+  transition: box-shadow var(--transition);
 }
 
 .count_wrap:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* 本全体リンク */
 .count_cnt {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  padding: 15px;
   text-decoration: none;
-  color: var(--text-color);
-  transition: background-color 0.3s ease;
-  gap:100px;
+  color: inherit;
+  gap: 25px; /* 固定値100pxから現実的な数値へ変更 */
+  transition: background-color var(--transition);
 }
 
-/* カーソルを当てたときに背景色を変える */
 .count_cnt:hover {
-  background-color: #eef2f8;
-  border-radius: var(--radius);
+  background-color: var(--accent-hover);
 }
 
-/* 本の画像（左） */
+/* 本の画像 */
 .count_cnt img {
-  width: 120px;
-  height: 160px;
-  border-radius: 8px;
+  width: 110px;
+  height: 150px;
+  border-radius: 6px;
   object-fit: cover;
   flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* 本の情報（中央ブロックだが、文字は左寄せ） */
+/* 本の情報 */
 .book {
-  flex: 1;
-  text-align: left;
+  flex: 1; /* 残りのスペースをすべて使う */
 }
 
 .book_ttl h2 {
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 6px;
-  color: #222;
-  text-align: left;
+  color: #111;
 }
 
 .book_about h3 {
   font-size: 14px;
-  color: #555;
-  margin-bottom: 5px;
-  text-align: left;
+  color: var(--text-muted);
+  margin-bottom: 4px;
 }
 
 .book_about p {
   font-size: 13px;
-  color: #333;
-  line-height: 1.5;
-  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2行以上に増えたら三点リーダーにする */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* 貸出情報（右寄せ・文字のみ） */
+/* 貸出情報 */
 .book_lend {
-  width: 90px;
+  width: 100px;
   text-align: right;
   flex-shrink: 0;
 }
@@ -204,63 +168,33 @@ body {
   font-weight: bold;
 }
 
-/* 貸出可・不可の色分け */
-.book_lend_ttl.available {
-  color: #008000; /* 緑 */
-}
-
-.book_lend_ttl.unavailable {
-  color: #ff0000; /* 赤 */
-}
+.available { color: var(--color-available); }
+.unavailable { color: var(--color-unavailable); }
 
 /* ============================= */
-/* レスポンシブ対応 */
+/* レスポンシブ */
 /* ============================= */
 @media (max-width: 768px) {
   .c_hd {
     flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
+    align-items: stretch;
   }
-
-  .c_hd_left,
+  
   .c_hd_right {
-    width: 100%;
-  }
-
-  .count_wrap {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .count_cnt {
     flex-direction: column;
-    align-items: center;
     text-align: center;
-  }
-
-  .count_cnt img {
-    width: 100px;
-    height: 140px;
-  }
-
-  .book {
-    text-align: left;
-    width: 100%;
+    gap: 15px;
   }
 
   .book_lend {
     text-align: center;
-    margin-top: 10px;
+    width: 100%;
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
   }
 }
-.book_link {
-    display: block;
-    color: inherit;
-    text-decoration: none;
-}
-
-.book_link:hover {
-    opacity: 0.9;
-}
-
